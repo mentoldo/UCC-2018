@@ -8,5 +8,10 @@ output: html_document
 
 # Presentaciones
 
-## Clase 1
+## Semana 1
 
+1. [Introducción](./01_Introducción/introduccion.html)
+2. [Ejemplos](./01_ejemplosIntroduccion/ejemplosIntroduccion.html)
+3. [Niveles de Medición](./01_NivelesMedicion/nivelesMedicion.html)
+4. [Tablas de distribución de frecuencias](./02_tablasFrecuencia/02_tablasFrecuencia.html)
+5. [Gráficos frecuencias](./02_graficoFrecuencias/02_graficoFrecuencias.html)
