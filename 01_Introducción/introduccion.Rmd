@@ -1,0 +1,131 @@
+---
+title: "Introducción"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      mathjax: local
+      self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(knitr)
+library(kableExtra)
+```
+
+## ¿Por qué estudiamos estadística?  
+
+* La estadística es una rama de las matemáticas que se ocupa de la colección, interpretación, presentación y organización de los datos.  
+
+(Wikipedia contributors. (2018, May 31). Statistics. In Wikipedia, The Free Encyclopedia. Retrieved 20:25, June 2, 2018, from https://en.wikipedia.org/w/index.php?title=Statistics&oldid=843801388)  
+
+* La ciencia se interesa por la producción de conocimiento validado, contrastable. Para ello releva información y recopila datos empíricos, que posteriormente son analizados con herramientas estadísticas.
+
+## ¿Por qué estudiamos estadística?  
+
+* Nos da herramientas para **describir** y **relacionar** e **interpretar** hechos y experiencias.
+* Nos permite contrastar el conocimiento, las teorías, las ideas, cuestionar los prejuicios y el sentido común.
+
+## ¿Pará qué puedo utilizar la estadística en el ámbito profesional?
+Además del ámbito estrictamente científico, puedo utilizar la estadística para
+
+- Evaluar un plan de trabajo
+- Realizar un seguimiento a un paciente
+- Comunicar experiencias y resultados a otros profesionales
+- Interpretar los resultados de una publicación científica
+- Evaluar los resultados de una política institucional en mi área específica de incumbencia
+
+
+## Pasos en el Análisis de Datos
+```{r}
+
+include_graphics("./img/pasosAnalisis.svg")
+```
+
+## Definición de conceptos
+### Medición
+
+"Medir es asignar un número a una característica de un objeto o evento, que puede ser comparado con otros objetos o eventos" 
+
+(Wikipedia contributors. (2018, May 17). Measurement. In Wikipedia, The Free Encyclopedia. Retrieved 13:46, May 30, 2018, from https://en.wikipedia.org/w/index.php?title=Measurement&oldid=841625139)  
+
+
+A diferencia de la teoría clásica de la medición, los números no representan necesariamente cantidades, sino relaciones (Stevens, 1946; 1951)
+
+<div class="notes">
+(Retomaremos posteriormente esta definición cuando hablemos de niveles de medición)
+</div>
+
+## Definición de conceptos
+### Unidad de análisis
+Son los elementos o individuos a los que le mediremos una característica determinada. Cada unidad de análisis va a ser representada por una fila en nuestra matriz de datos
+
+### Población
+Son todas las unidades de análisis a las que nos referimos en un estudio en particular
+
+### Muestra
+Es un subconjunto representativo de la población
+
+## Definición de conceptos
+### Variables
+Son las características que medimos en las unidades de análisis.
+
+### Ejemplo: 
+* ¿Cuál es el promedio de los alumnos de 6 año de un colegio determinado? En este caso las **unidades de análisis** son los *alumnos*, y el *promedio* es **nuestra variable**.  
+* ¿Cuál es la proporción de colegios públicos y privados en la Ciudad de Córdoba? ¿Cuál es el promedio de alumnos por colegio? En este caso, las **unidades de análisis** son *escuelas* y las **variables** la *dependencia* (público o privada) y la *cantidad de alumnos*.
+
+## Definición de conceptos
+### Categorías
+Son los valores que una variable pueda asumir.
+
+### Ejemplo:
+* Nivel de escolaridad alcanzado:  
+  
+<div class="columns-2">
+	1) Ninguno
+	2) Primario Incompleto
+	3) Primario Completo
+	4) Secundario Incompleto  
+	
+	
+	5) Secundario Completo
+	6) Terciario o Universitario Incompleto
+	7) Terciario o Universitario Completo
+	8) PostGrado
+</div>
+
+----
+
+Las categorías deben ser **exhaustivas** y **mutuamente excluyentes**.
+
+Ejemplo de categorías **no mutuamente excluyentes excluyentes**:  
+
+Supongamos que realizamos una encuesta a egresados de la Facultad de Psicología.  
+
+* Título de grado:  
+
+	1) Licenciado en Psicología
+	2) Profesor en Psicolotía
+	3) Acompañante Terapéutico
+
+----  
+
+Ejemplo de categorías **no exhaustivas**:  
+
+* Tipo de actividad física que realiza:  
+
+	1) Caminta
+	2) Ciclismo
+	3) Maratonismo
+	4) Natación 
+	5) Deporte colectivo
+  
+  
+Si el encuestado juega al tenis, hace yoga, gimnasia artística. Decimos entonces que las categorías no son exhaustivas.  
+
+----
+
+Cuando no se conocen todas las categorías que puede tomar la variable, o por alguna razón no interesa incluirlas, se puede agregar la categoría **otros**.

@@ -1,0 +1,58 @@
+---
+title: "Bases de datos de ejemplo"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      mathjax: local
+      self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyr)
+library(knitr)
+library(kableExtra)
+```
+
+## CEPRAM
+Encuesta realizada a los adultos que asisten al Centro de Promoción del Adulto Mayor (CEPRAM)
+
+[Cuestionario](./cuestionario/20180531170452390_0001.pdf)  
+<div class="notes">
+Los primer etapa del análisis de datos. El CEPRAM realiza diversas actividades destinadas a promover las Salud.
+Una de sus principales ofertas son cursos de formación en diversas áreas como Psicología, Recreación, Idiomas, TICs, Historia.
+
+</div>
+
+
+## Matriz de datos
+```{r}
+base <- read.csv2("datos/base.csv")
+
+rmarkdown::paged_table(base[1:50,])
+```
+
+
+
+## Encuesta Nacional sobre Prevalencia de Consumo de Sustancias Psicoactivas
+
+[Bases de datos - Indec](https://www.indec.gob.ar/bases-de-datos.asp)
+
+* [Cuestionario](https://www.indec.gob.ar/ftp/cuadros/menusuperior/enprecosp/cuestionarios_enprecosp2011.pdf)
+* [Libro de Códigos](https://www.indec.gob.ar/ftp/cuadros/menusuperior/enprecosp/enprecosp_2011_documento_baseusuario.pdf)
+
+
+## Matriz de datos
+
+```{r indec}
+drogas <- read.table("../data/Base Usuario ENPreCoSP-2011.txt", skip = 1, header = FALSE, sep = "|", nrows = 100)
+nombres <- readLines("../data/Base Usuario ENPreCoSP-2011.txt", n=1)
+nombres <- strsplit(nombres,"\\|")
+nombres <- nombres [[1]]
+names(drogas) <- nombres
+
+rmarkdown::paged_table(drogas[1:50,])
+```

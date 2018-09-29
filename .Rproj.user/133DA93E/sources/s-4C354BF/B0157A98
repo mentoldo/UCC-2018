@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538008115998.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "848070912",
+    "id" : "B0157A98",
+    "lastKnownWriteTime" : 1538175399,
+    "last_content_update" : 1538175399027,
+    "path" : "~/Escritorio/PsicoEstadistica/UCC/clases/raw.R",
+    "project_path" : "raw.R",
+    "properties" : {
+        "cursorPosition" : "111,52",
+        "scrollLine" : "83"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,29 @@
+---
+title: "Aprender"
+subtitle: "Psicoestadística. Facultad de Educación. UCC"
+author:
+  - Alfonso, Matías A.
+date: "11 de mayo de 2018"
+output: 
+  pdf_document:
+    includes:
+      in_header: ../header.tex
+      # before_body: doc.prefix.tex
+    df_print: kable
+    fig_caption: yes
+urlcolor: blue
+breaklinks: true
+fontsize: 12pt
+---
+
+Ingrese a <http://aprenderdatos.educacion.gob.ar/binarg/RpWebEngine.exe/Portal?lang=esp>. Acceda a los datos de 5to o 6to año del nivel secundario (Diríjase a la pestaña Aprender -> Nivel Secundario -> 5to o 6to Año del Nivel Secundario). Responda las siguientes preguntas:
+
+1. Vaya a "Característica de los estudiantes -> Características del estudiante y trayectoria educativa" y solicite un análisis por Sexo/Género ¿Qué cantidad de personas realizaron la prueba Aprender en Córdoba? ¿Cuál es el porcentaje de hombres y cuál el porcentaje de mujeres? Copie y pegue la tabla de resultados.
+
+2. Vaya a "Característica de los estudiantes -> Acceso a TICS". Analice la variable "Tenencia de conección a Internet" para la ciudad de Córdoba. ¿Qué porcentaje de alumnos evaluados posee y qué porcentaje no posee conexión a Internet? Considere la variable "Edad cuando empezó a usar celular/computadora/Tablet/netbook/notebook" ¿Qué porcentaje de alumnos comenzó a utilizar la computadora antes de los 10 años? Copie y pegue los gráficos de resultados.
+
+Imagine que está realizando un estudio en el que desea explorar variables que puedan estar correlacionadas con el rendimiento en Matemática. Para realizar el análisis considere toda la base de datos.
+
+3. Realice una tabla de contingencia para el rendimiento en Matemática (desagregado en 4 categorías) en función de "Edad cuando empezó a usar celular/computadora/Tablet/netbook/notebook". Calcule los porcentajes marginales por fila. Interprete la salida. ¿Que sugieren los resultados? ¿El acceso temprano a los dispositivos electrónicos está relacionado con el rendimiento en Matemática? Justifique. Copie y pegue la tabla de resultados.
+
+4. Realice una tabla de contingencia para el rendimiento en Matemática (desagregado en 4 categorías) en función de "Autoconcepto en Matemática". Calcule los porcentajes marginales por fila. Interprete la salida. ¿Que sugieren los resultados? ¿El autoconcepto en Matemática está relacionado con el rendimiento en Matemática? Justifique. Copie y pegue la tabla de resultados.

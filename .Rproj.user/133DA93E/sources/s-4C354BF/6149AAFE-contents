@@ -1,0 +1,216 @@
+---
+title: "Tablas de distribución de frecuencias"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: true
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+options("kableExtra.html.bsTable" = T)
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+## Resumen de la información
+
+Para resumir la información generada, haremos uso de:
+
+* Tablas
+* Gráficos  
+* Medidas de resumen  
+
+# Tablas de distribución de frecuencias
+
+## Tablas de distribución de frecuencias
+
+* Realizaremos recuentos de los valores de las variables
+* Cada tabla informa sobre **una sola variable**
+* Las filas de las tablas son **categorías** de la variable medida
+
+## Frecuencias simples: absolutas y relativas
+
+### Frecuencias absolutas simples
+
+* Es la **cantidad** de casos que asumen un determinado valor.
+
+### Frecuencias relativas simples
+
+* Es la **proporción** de casos que asumen un determinado valor de la variable.
+
+## Ejemplo
+
+* Se realiza una prueba de memoria a 10 personas. Se les pide que memoricen una lista de 20 palabras. Se registra la Edad, el Sexo y el Número de Palabras Recordadas. la matriz de datos queda conformada de la siguiente manera:
+
+---
+
+```{r matriz_npalabras}
+npalabras <- read.csv2("../data/npalabras.csv")
+
+kable(npalabras) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+## Frecuencias absoluta simple 
+
+Vamos a resumir la información sobre la variable **sexo**  
+
+* Creamos una nueva tabla con las categorías de la variable sexo como filas. Tendremos una fila para **mujer** y una fila para **hombre**.
+* Contamos la cantidad de veces que aparece esa categoría en nuestra matriz de datos original. Colocamos el resultado en la columna **f**.
+
+## Frecuencias absoluta simple 
+
+```{r freq1}
+freq1 <- npalabras %>% 
+    group_by(sexo) %>% 
+    summarise(f = n())
+
+kable(freq1) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+## Frecuencia relativa simple
+
+* Calculamos la proporción de esas cantidades en relación al total. Colocamos los resultados en la columna **f'**
+
+## Frecuencia relativa simple
+
+```{r freq2}
+freq2 <- npalabras %>% 
+    group_by(sexo) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f))
+
+kable(freq2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+
+## Frecuencias Acumuladas
+
+* Para calcular las frecuencias acumuladas es necesario que el **nivel de medición** de la variable sea al menos **ordinal**
+
+### Frecuencia absoluta acumulada
+
+* Es la cantidad de casos que asumen ese valor y todos los valores menores a él.
+
+### Frecuencia relativa acumulada 
+
+* Es la proporción de casos que asumen ese valor y todos los valores menores a él.
+
+## Ejemplo
+
+Continuando con el ejemplo anterior, calculamos ahora las frecuencias absolutas y relativas para la variable **npalabras**
+```{r freq_palabras1}
+freqpalabras1 <- npalabras %>% 
+    group_by(npalabras) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f))
+
+kable(freqpalabras1) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+## Frecuencias absolutas acumuladas
+
+Supongamos que queremos saber cuántas personas recordaron 14 palabras o menos. Calculamos para ello las frecuencias absolutas acumuladas.
+
+## Frecuencias absolutas acumuladas
+```{r freq_palabras2}
+freqpalabras2 <- npalabras %>% 
+    group_by(npalabras) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f), `F` = cumsum(f))
+
+kable(freqpalabras2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+## Frecuencias relativas acumuladas
+
+* Nos podría interesar saber qué porcentaje de gente recordó menos de 12 palabras. La frecuencia relativa acumulada nos permite responder esta pregunta.
+
+## Frecuencias relativas acumuladas
+```{r freq_palabras3}
+freqpalabras2 <- npalabras %>% 
+    group_by(npalabras) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f), `F` = cumsum(f)) %>% 
+    mutate(`F'` = `F`/sum(f))
+
+kable(freqpalabras2, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+## Datos agrupados
+
+* Imaginemos ahora que realizamos la misma prueba de memoria, pero en vez de realizarla a 10 personas, se la realizamos a 1000. Y supongamos que la edad de la gente va de los 18 a los 80 años.
+
+* Tenemos la siguiente matriz de datos
+
+---
+
+```{r matriz_npalabras1000}
+npalabras2 <- read.csv2("../data/npalabras1000.csv")
+
+kable(npalabras2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F) %>% 
+     scroll_box(width = "100%", height = "500px")
+```
+
+## Datos agrupados
+
+* La variable edad puede tomar una gran cantidad de valores.
+* ¿Cómo resumimos esa información?
+* Podemos agrupar los valores de la variable en **intervalos**.
+* Agrupamos los valores cada 10 años y contamos cuántos casos caen dentro de cada intervalo.
+* Luego procedemos igual que anteriormente y construimos las columnas **f, f', F** y **F'**
+
+---
+
+```{r freq_palabras1000}
+intervalos <- seq(15, 90, 10)
+
+freqpalabras2 <- npalabras2 %>%
+    mutate(edad_agrupada = cut(edad, intervalos)) %>% 
+    group_by(edad_agrupada) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f), `F` = cumsum(f)) %>% 
+    mutate(`F'` = `F`/sum(f))
+
+kable(freqpalabras2, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+
+```
+
+## Datos agrupados
+
+* ¿Qué sucede en los extremos del intervalo?
+* El corchete "**]**" indica que el intervalo es **cerrado** en ese extremo, es decir, que incluye a ese valor de la variable.
+* El paréntesis "**(**" indica que el extremo es **abierto** en ese extremo, es decir, no incluye a ese valor de la variable.
+* Por ejemplo, si tenemos un caso con 25 años, lo contabilizaremos en el intervalo (15, 25] y no en el intervalo (25, 35]
+
+## Datos agrupados
+
+* ¿Cuándo agrupar los datos?
+* Cuando la variabla es **continua**.
+* Cuando es **discreta** pero puede tomar una **gran cantidad de valores**.
+* Los intervalos de la nueva variable categorizada se denominan **clases**.

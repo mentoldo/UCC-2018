@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1529688757420.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1326429145",
+    "id" : "15D364D7",
+    "lastKnownWriteTime" : 1529699537,
+    "last_content_update" : 1529699538005,
+    "path" : "~/Escritorio/PsicoEstadistica/UCC/clases/escuelaEspecialCba.Rmd",
+    "project_path" : "escuelaEspecialCba.Rmd",
+    "properties" : {
+        "cursorPosition" : "10,8",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

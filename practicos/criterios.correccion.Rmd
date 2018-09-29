@@ -1,0 +1,64 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Criterios de correción TP1  
+
+-------------------------------------------------------------------
+Nº  Criterio                                               Puntos 
+--- ------------------------------------------------------ ------
+1   Entrega en tiempo y forma                               10
+
+    **Actividad 1 y 2**  
+
+2   Identifica correctamente la variable y                  5
+    unidad de análisis                
+  
+    **Actividad 3**  
+
+3   Identtifica correctamente los niveles de medición       2.5
+
+4   Identifica correctamente los                            2.5
+    valores que puede tomar cada una
+
+    **Actividad 4**  
+
+5   Justifica correctamente                                 5
+
+    **Actividad 5**
+
+6   Cálculos de la media, varianza y desvío estándar        10
+
+7   Tabla de distribución de frecuencias para Edad          10
+
+8   Identificación de mediana y moda,                       5
+
+9   Descripción de lo observado                             5
+
+10  Tabla de distribución de frecuencias para Lee           5
+
+    **Actividad 6**
+
+11  Identifique el nivel de medición,                       5
+    el modo y la mediana
+
+12  Nivel educativo inferior o igual al primario            5
+
+13  Porcentaje niver Terciario o Superior                   5
+
+    **Actividad 7**
+
+14  Identifique el Modo                                     5
+
+15  Especificación de simetría                              5
+
+    **Actividad 8**
+
+16  Describa el gráfico                                     5
+
+17  Indique qué representan las partes                      10
+
+---------------------------------------------------------------
+

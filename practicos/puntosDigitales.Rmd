@@ -1,0 +1,67 @@
+---
+title: "Trabajo Práctico I"
+subtitle: "Psicoestadística. Facultad de Educación. UCC"
+author:
+  - Alfonso, Matías A.
+date: "11 de mayo de 2018"
+output: 
+  pdf_document:
+    df_print: kable
+    fig_caption: yes
+    toc: false
+    number_sections: true
+urlcolor: blue
+fontsize: 12pt
+header-includes:
+- \usepackage[spanish]{babel}
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+```{r cargodatos}
+library(DescTools) ## Para calcular el V de Cramer's
+library(readxl) ## Cargamos la librería para abrir el xls
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(e1071)
+```
+
+```{r escuelas}
+if(!file.exists("./data/puntodigital.csv")){
+    fileURL <- "https://servicios.puntodigital.paisdigital.modernizacion.gob.ar/ws/ws-eventos.php?method=getCsv"
+    dir.create("./data")
+    download.file(fileURL, destfile = "./data/puntodigital.csv")
+}
+
+datos <- read.csv("./data/puntodigital.csv")
+
+head(datos)
+```
+## Actividad
+Ingrese a <http://datos.gob.ar/dataset/modernizacion-puntos-digitales> y descargue la base de datos Ubicación de Puntos Digitales, en formato .csv. Especificaciones del archivo: separado por ','; decimal: '.'; primer fila como encabezado.
+Los Puntos Digitales forman parte de las políticas de inclusión tecnológica desarrolladas por el Ministerio de Modernización, a través del Plan País Digital.
+Es un espacio público de inclusión digital que brinda conectividad, capacitaciones y acceso a las nuevas Tecnologías de la Información y de la Comunicación (TIC). Abra el archivo y observe la base de datos que ha descargado. Note que es una matriz de datos primaria. Cada fila es una unidad de observación y cada columna es una variable. Responda:
+
+1) ¿Cuántas variables hay en esta tabla? ¿Cántos puntos digitales hay en total?
+```{r ntotal}
+nrow(datos)
+ncol(datos)
+```
+
+2) Realice una tabla de distribución de frecuencias para la variable provincia. ¿Cuál es la provincia que tiene más puntos digitales? ¿Cuál es la que tiene menos? ¿Qué nivel de medición tiene la variable provincia?
+```{r freq_prov}
+datos %>% 
+    group_by(provincia) %>% 
+    summarise(freq = n()) %>% 
+    mutate(freq.rel = freq/sum(freq)) %>% 
+    arrange(desc(freq))
+```
+3) Realice una tabla de distribución de frecuencias para la variable estado. ¿Cuál es el porcentaje de puntos digitales que se encuentra activo?
+```{r estado_pd}
+datos %>% 
+    group_by(estado) %>% 
+    summarise(freq = n()) %>% 
+    mutate(freq.rel = freq/sum(freq)) %>% 
+    arrange(desc(freq))
+```

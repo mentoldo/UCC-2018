@@ -1,0 +1,192 @@
+---
+title: "Representaciones gráficas de frecuencias"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: true
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+## Para poder imprimir las tablas con kable_styling
+options("kableExtra.html.bsTable" = T)
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+# Representaciones gráficas de frecuencias
+
+## Gráfico de barras
+
+La siguiente es una tabla de distribución de frecuencias para la variable **nivel máximo de estudios alcanzados** para los asistentes a CEPRAM.
+
+```{r freq_nivel_ed}
+cepram <- read.csv2("../data/cuestionario.csv")
+
+freq1 <- cepram %>% 
+    filter(!is.na(NIVELESTUDIOS), NIVELESTUDIOS != 0) %>% 
+    mutate(`Nivel de estudios` = factor(NIVELESTUDIOS,
+                                    levels = 1:6,
+                                    ordered = TRUE,
+                                    labels = c("Primaria incompleta",
+                                               "Primaria completa",
+                                               "Secundaria incompleta",
+                                               "Secundaria completa",
+                                               "Estudios terciarios",
+                                               "Universitarios o superiores"))) %>% 
+    group_by(`Nivel de estudios`) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = round(f/sum(f), 2), `F` = cumsum(f)) %>% 
+    mutate(`F'` = round(`F`/sum(f), 2))
+
+kable(freq1, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+## Gráfico de barras
+
+* Podemos represetar gráficamente las frecuencias absolutas y relativas simples mediante un gráfico de barras.
+
+---
+
+```{r bar1, fig.cap = "Frecuencia absolutas simples para nivel de estudios"}
+freq1 %>% 
+     mutate(`Nivel de estudios` = factor(`Nivel de estudios`,
+                                    labels = c("Primaria\nincompleta",
+                                               "Primaria\ncompleta",
+                                               "Secundaria\nincompleta",
+                                               "Secundaria\ncompleta",
+                                               "Estudios\nterciarios",
+                                               "Universitarios\no superiores"))) %>% 
+    ggplot(aes(`Nivel de estudios`, f)) +
+    geom_col(fill = "tomato") +
+    theme_minimal()
+
+```
+
+--- 
+
+```{r bar2, fig.cap = "Frecuencia relativas simples para nivel de estudios"}
+freq1 %>% 
+     mutate(`Nivel de estudios` = factor(`Nivel de estudios`,
+                                    labels = c("Primaria\nincompleta",
+                                               "Primaria\ncompleta",
+                                               "Secundaria\nincompleta",
+                                               "Secundaria\ncompleta",
+                                               "Estudios\nterciarios",
+                                               "Universitarios\no superiores"))) %>% 
+    ggplot(aes(`Nivel de estudios`, `f'`)) +
+    geom_col(fill = "thistle") +
+    theme_minimal()
+
+```
+
+## Gráfico de tortas
+
+* Podemos representar la misma información mediante un gráfico de tortas
+
+---
+
+```{r pie1, fig.cap = "Frecuencia absoluta simple para nivel de estudios"}
+names(freq1) <- c("nivel_ed", "freq", "freq.rel", "cum.freq", "rel.cum.freq")
+
+pos <- sum(freq1$freq) - (cumsum(freq1$freq) - freq1$freq / 2)
+label <- freq1$freq
+
+
+freq1 %>% 
+    ggplot(aes(x = 1, y = freq, fill = nivel_ed)) +
+    geom_col(color = "white") +
+    theme_minimal() +
+    theme(axis.ticks=element_blank(),
+          axis.title=element_blank(),
+          axis.text.y=element_blank(),
+          # panel.grid = element_blank(),
+          panel.grid.minor.y = element_blank(),
+          # line = element_blank(),
+          axis.text.x=element_text(color='black',size=12)) +
+    coord_polar(theta = "y") +
+    scale_y_continuous(breaks = pos, labels = label)
+
+```
+
+---
+
+```{r pie2, fig.cap = "Porcentajes para nivel de estudios"}
+names(freq1) <- c("nivel_ed", "freq", "freq.rel", "cum.freq", "rel.cum.freq")
+
+pos <- sum(freq1$freq.rel) - (freq1$rel.cum.freq - freq1$freq.rel / 2)
+label <- paste(freq1$freq.rel * 100, "%", sep = "")
+
+
+freq1 %>% 
+    ggplot(aes(x = 1, y = freq.rel, fill = nivel_ed)) +
+    geom_col(color = "white") +
+    theme(axis.ticks=element_blank(),
+          axis.title=element_blank(),
+          axis.text.y=element_blank(),
+          # panel.grid = element_blank(),
+          panel.grid.minor.y = element_blank(),
+          # line = element_blank(),
+          axis.text.x=element_text(color='black',size=12)) +
+    coord_polar(theta = "y") +
+    scale_y_continuous(breaks = pos, labels = label)
+
+```
+
+## Gráficos de torta
+
+* Si bien los gráficos de torta se encuentran enormemente difundidos, su utilización en la actualidad es desaconsejada.
+* Su interpretación es ambigüa. No permite detectar diferencias sutiles.
+* No es un buen método para transmitir información.
+* Se puede reemplazar fácilmente por un gráfico de barras.
+
+## Histograma
+
+* Para **variables continuas** con datos agrupados.
+* Es similar al gráfico de barras, pero sin espacio entre las barras.
+
+### Ejemplo
+
+* Realizamos una tabla de distribución de frecuencias para la variable **edad** en la base de CEPRAM.
+
+---
+
+```{r freq_edad}
+intervalo <- seq(50, 90, by = 5)
+
+freq2 <- cepram %>% 
+    filter(!is.na(EDAD), EDAD != 0, EDAD > 30, EDAD < 120) %>% 
+    mutate(edad_cat = cut(EDAD, intervalo, include.lowest = TRUE)) %>% 
+    group_by(edad_cat) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f), 2, `F` = cumsum(f)) %>% 
+    mutate(`F'` = `F`/sum(f), 2)
+
+kable(freq2, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+---
+
+```{r hist, fig.cap = "Frecuencias de edad para las personas que asisten al CEPRAM"}
+cepram %>% 
+    filter(!is.na(EDAD), EDAD != 0, EDAD > 30, EDAD < 120) %>% 
+    ggplot(aes(x = EDAD)) +
+    geom_histogram(breaks = intervalo, fill = "steelblue2", col = "grey10") +
+    labs(x = "Edad", y = "Frecuencia absoluta") +
+    theme_light()
+```
+

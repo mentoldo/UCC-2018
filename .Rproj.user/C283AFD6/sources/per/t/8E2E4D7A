@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1534990000892.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "652465229",
+    "id" : "8E2E4D7A",
+    "lastKnownWriteTime" : 1528223110,
+    "last_content_update" : 1528223110,
+    "path" : "~/Escritorio/PsicoEstadistica/UCC/clases/01_ejemplosIntroduccion/ejemplosIntroduccion.Rmd",
+    "project_path" : "01_ejemplosIntroduccion/ejemplosIntroduccion.Rmd",
+    "properties" : {
+        "cursorPosition" : "49,0",
+        "last_setup_crc32" : "482788F2ac1599aa",
+        "scrollLine" : "32"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

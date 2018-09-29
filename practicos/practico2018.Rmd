@@ -1,0 +1,66 @@
+---
+title: "Práctico 2 - 2018"
+subtitle: "Psicoestadística - Facultad de Educación - UCC"
+output: 
+  pdf_document:
+    includes:
+      in_header: ../header.tex
+      # before_body: doc.prefix.tex
+    df_print: kable
+    fig_caption: yes
+urlcolor: blue
+breaklinks: true
+fontsize: 12pt
+---
+
+## Actividad 1
+
+Diríjase al siguiente link https://datosestadistica.cba.gov.ar/dataset/indicadores-del-ra-de-educacion y descargue el Anuario del Ministerio de Educación del Año 2016 de la provincia de Córdoba. 
+Responda las siguientes preguntas:  
+
+ a) ¿Cuál es el total de alumnos matriculados en escuelas especiales en la provincia de Córdoba? ¿Cuál es el total para cada uno de los niveles: Inicial, Primario y Secundario? (Pag 159 y pag 164) Calcule las cantidades a partir de la distribución porcentual de la matrícula en escuelas especiales (pag. 164). 
+ b) Calcule el porcentaje de alumnos matriculados en colegios especiales con el total matriculado en los niveles inicial, primario y secundario. (Pág 15)
+ c) Queremos saber cómo ha sido la integración de alumnos de colegios especiales a colegios comunes. Analice los gráficos de la página 166. Interprete. ¿La integración aumentó o disminuyó entre los años 2012 y 2016? ¿Cómo a sido esa evolución en los colegios públicos y en los colegios privados?  
+ d) Diríjase a las páginas 168 y 169. Calcule los porcentajes de alumnos que reciben integración de tipo **simultánea** y **apoyo** para los años 2012 y 2016, en relación al total de alumnos integrados. Compare y describa la variación de esos porcentajes a lo largo de esos años.
+ 
+## Actividad 2
+
+Ingrese a <http://datos.gob.ar/dataset/modernizacion-puntos-digitales> y descargue la base de datos Ubicación de Puntos Digitales, en formato .csv. Especificaciones del archivo: separado por ','; decimal: '.'; primer fila como encabezado.
+Los Puntos Digitales forman parte de las políticas de inclusión tecnológica desarrolladas por el Ministerio de Modernización, a través del Plan País Digital.
+Es un espacio público de inclusión digital que brinda conectividad, capacitaciones y acceso a las nuevas Tecnologías de la Información y de la Comunicación (TIC). Abra el archivo y observe la base de datos que ha descargado. Note que es una matriz de datos primaria. Cada fila es una unidad de observación y cada columna es una variable. Responda:
+
+a) ¿Cuántas variables hay en esta tabla? ¿Cántos puntos digitales hay en total?
+
+b) Realice una tabla de distribución de frecuencias para la variable provincia. ¿Cuál es la provincia que tiene más puntos digitales? ¿Cuál es la que tiene menos? ¿Qué nivel de medición tiene la variable provincia?
+
+c) Realice una tabla de distribución de frecuencias para la variable estado. ¿Cuál es el porcentaje de puntos digitales que se encuentra activo?
+
+## Actividad 3
+
+Ingrese a <http://aprenderdatos.educacion.gob.ar/binarg/RpWebEngine.exe/Portal?lang=esp>. Acceda a los datos de 5to o 6to año del nivel secundario (Diríjase a la pestaña Aprender -> Nivel Secundario -> 5to o 6to Año del Nivel Secundario). Responda las siguientes preguntas:
+
+1. Vaya a "Característica de los estudiantes -> Características del estudiante y trayectoria educativa" y solicite un análisis por Sexo/Género ¿Qué cantidad de personas realizaron la prueba Aprender en Córdoba? ¿Cuál es el porcentaje de hombres y cuál el porcentaje de mujeres? Copie y pegue la tabla de resultados.
+
+2. Vaya a "Característica de los estudiantes -> Acceso a TICS". Analice la variable "Tenencia de conección a Internet" para la ciudad de Córdoba. ¿Qué porcentaje de alumnos evaluados posee y qué porcentaje no posee conexión a Internet? Considere la variable "Edad cuando empezó a usar celular/computadora/Tablet/netbook/notebook" ¿Qué porcentaje de alumnos comenzó a utilizar la computadora antes de los 10 años? Copie y pegue los gráficos de resultados.
+
+Imagine que está realizando un estudio en el que desea explorar variables que puedan estar correlacionadas con el rendimiento en Matemática. Para realizar el análisis considere toda la base de datos.
+
+3. Realice una tabla de contingencia para el rendimiento en Matemática (desagregado en 4 categorías) en función de "Edad cuando empezó a usar celular/computadora/Tablet/netbook/notebook". Calcule los porcentajes marginales por fila. Interprete la salida. ¿Que sugieren los resultados? ¿El acceso temprano a los dispositivos electrónicos está relacionado con el rendimiento en Matemática? Justifique. Copie y pegue la tabla de resultados.
+
+4. Realice una tabla de contingencia para el rendimiento en Matemática (desagregado en 4 categorías) en función de "Autoconcepto en Matemática". Calcule los porcentajes marginales por fila. Interprete la salida. ¿Que sugieren los resultados? ¿El autoconcepto en Matemática está relacionado con el rendimiento en Matemática? Justifique. Copie y pegue la tabla de resultados.
+
+## Actividad 4
+
+La Encuesta Permanente de Hogares (EPH) es un programa nacional de producción sistemática y permanente de indicadores sociales de propósitos múltiples. Permite conocer características sociodemográficas y socioeconómicas de la población. Actualmente se realiza con una periodicidad de 3 meses y abarca 31 conglomerados urbanos.
+Descargue la base de datos de la EPH correspondiente al 2do Trimestre de 2017. (<https://www.indec.gob.ar/bases-de-datos.asp>). Abra la base usu_individual.
+
+a) Ralice una tabla de distribución de frecuencias y un gráfico de barras para la variable CH12 ("¿Cuál es el nivel más alto que cursa o cursó?"). Indique el nivel de medición de la variable.
+Imagine que está interesado en estudiar la insersión laboral y la capacidad adquisitiva de personas que recibieron educación especial.
+
+b) Seleccione en la base los casos que recibieron Educación Especial (CH12 = 9) y son mayores a 18 años (CH06 >= 18). Construya y guarde una nueva tabla con estos datos. De aquí en adelante trabajará con esa nueva tabla.
+
+c) Construya un histograma para la Edad (CH06).
+
+d) Elabore un boxplot para el ingreso total individual (P47T) particionado por sexo (CH04). Interprete los resultados. Indique los cuartiles, la mediana, los valores mínimos y máximos y los resultados extremos.
+
+e) Realice una tabla de distribución de frecuencias para la variable ESTADO y CAT_INAC. Describa los resultados.

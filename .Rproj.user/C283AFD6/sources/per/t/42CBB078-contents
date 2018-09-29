@@ -1,0 +1,140 @@
+---
+title: "Niveles de medición"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: 01-06-2018
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      mathjax: local
+      self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(knitr)
+library(kableExtra)
+```
+
+
+## Clasificación
+Cuatro niveles de medición:  
+
+* **Nominal**  
+* **Ordinal**  
+* **Intervalar**  
+* **Proporcional**  
+
+Las propiedades de los niveles de medición son **acumulativas**.
+<div class="notes">
+Medir es asignar un número a una característica de un objeto o evento, que puede ser comparado con otros objetos o eventos  
+
+El nivel Nominal es el nivel inferior y el nivel Proporcional el superior
+</div>
+
+## Clasificación
+Variables cualitativas:  
+
+* Nominal
+* Ordinal
+
+Variables cuantitativas:  
+
+* Intervalar
+* Proporcional
+
+## Nivel nominal
+La asignación de códigos numéricos tiene la función de **designar** a las categorías y de **distinguirlas** unas de otras. 
+
+* Relaciones:
+\[1 = 2\]
+
+## Nivel nominal
+
+Ejemplo: 
+
+* Carrera que cursa:  
+	1) Psicología
+	2) Psicopedagogía
+	3) Educación
+	4) Otra
+	
+## Nivel ordinal
+Se agrega la propiedad de **orden**.  
+
+* Relaciones:  
+\[
+1 = 2 \\
+1 < 2
+\]
+
+## Nivel ordinal
+
+Ejemplo:  
+
+* Indique su grado de acuerdo:  
+
+	1) Completamente en desacuerdo
+	2) En desacuerdo
+	3) No sabe
+	4) De acuerdo
+	5) Completamente de acuerdo
+
+## Nivel ordinal  
+
+* Año de la carrera más alto en el que se matriculó:  
+
+	1) Primero
+	2) Segundo
+	3) Tercero
+	4) Cuarto
+	5) Quinto
+
+## Nivel intervalar
+Se agrega la propiedad de **conservación de las distancias**.  
+
+* Relaciones:  
+
+\[
+1 = 2 \\
+1 < 2 \\
+4 - 2 = 6 - 4
+\]
+
+* El cero es arbitrario
+
+## Nivel intervalar
+
+Ejemplo:  
+
+* Coeficiente intelectual. 
+* Puntaje en el inventario de Depresión de Beck
+
+## Nivel proporcional  
+
+Se agrega la **proporcionalidad** de los valores numéricos.
+
+* Relaciones:
+\[
+1 = 2 \\
+1 < 2 \\
+4 - 2 = 6 - 4 \\
+4 = 2 * 2
+\]
+
+* El cero es **absoluto**. Ausencia de magnitud.
+* Es el único nivel considerado como medición por la **teoría clásica**.
+
+## Nivel proporcional  
+**Discretas**  
+
+Ejemplo:  
+
+* Todas las variables conteo: Número de errores ortográficos cometidos; cantidad de palabras recordadas  
+
+**Continuas**  
+
+Ejemplo:  
+
+* El tiempo, el peso, la distancia

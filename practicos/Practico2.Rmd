@@ -1,0 +1,116 @@
+---
+title: "Práctico 2"
+subtitle: "Psicoestadística - Facultad de Educación - UCC"
+output: 
+  pdf_document:
+    includes:
+      in_header: ../header.tex
+      # before_body: doc.prefix.tex
+    df_print: kable
+    fig_caption: yes
+urlcolor: blue
+breaklinks: true
+fontsize: 12pt
+---
+## Primera Parte
+```{r setoptions, echo = FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE)
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+usuindividual <- read.csv2("../data/usu_individual_t117.txt")
+usuhogar <- read.csv2("../data/usu_hogar_t117.txt")
+cuestionario <- read.csv2("../data/cuestionario.csv")
+```
+En las siguientes actividades se trabajará principalmente con información extraída de las siguientes bases de datos.  
+
+* Base de datos de una encuesta de evaluación de CEPRAM. CEPRAM (Centro de Promoción del Adulto Mayor) es una fundación destinada a la promoción de la salud de los adultos mayores. Una de las actividades principales desarrollada por CEPRAM es el dictado de cursos en distintas áreas de conocimiento. (Para más información ver [www.cepram.org.ar](www.cepram.org.ar)) Su utilización se realiza con permiso de CEPRAM.  
+
+* Base de datos de la Ecuesta Permanente de Hogares (EPH) realizada por el Instituto Nacional de Estadística y Censos (INDEC) correspondiente al primer trimestre de 2017. EPH es un programa nacional de producción sistemática y permanente de indicadores sociales, que permite conocer las características sociodemográficas y socioeconómicas de la población. Es una base de datos de acceso público. <http://www.indec.gob.ar/bases-de-datos.asp>.  
+
+1. De la muestra correspondiente a la EPH se seleccionaron las personas mayores a 18 años que no tuvieron ningún nivel de instrucción educativo en la region del gran Córdoba. A continuación observamos las edades para esos casos  
+  
+  
+```{r sininstruccion, results = "asis"}
+tabla <- usuindividual %>% 
+            filter(AGLOMERADO == 07, CH06 > 18, NIVEL_ED == 7) %>% 
+            select(Edad = CH06, Lee = CH09) %>% 
+            mutate(caso = 1:n()) %>% 
+            select(caso, Edad, Lee) %>% 
+            mutate(Lee = factor(Lee, levels = 1:2, labels = c("Si", "No")))
+print(kable(tabla))
+```  
+  
+  a) Calcule la **media**, la **varianza** y la **desviación estándar** para la variable Edad.  
+  b) Realice una **tabla de distribución de frecuencias** para la variable **Edad**. Tome como referencia la siguiente tabla   
+    
+
+Edad    |   f   |   F   |   f'    | F'
+-------|--------|-------|--------|----
+[30, 40]||||
+-------|--------|-------|--------|----
+(40, 50]||||
+-------|--------|-------|--------|----
+(50, 60]||||
+-------|--------|-------|--------|----
+(60, 70]||||
+-------|--------|-------|--------|----
+(70, 80]||||
+  
+  
+  c) Identifique los intervalos que contienen a la **mediana** y la **moda** en la tabla anterior. Realice alguna descripción de lo observado. Por ejemplo: La mediana se encuentra entre los valores ... Esto quiere decir que el 50% de los casos se encuentra aproximadamente por debajo de ...  
+  d) Realice un **tabla de distribución de frecuencias** para la variable **Lee**. En este caso, no es necesario que calcule las frecuencias acumuladas (F y F').  
+
+2. La siguiente es una tabla de distribución de frecuencias para la variable nivel educativo para personas mayores de 18 años de la EPH:   
+
+
+```{r tablafreq, results = "asis"}
+tabla <- usuindividual %>% 
+            select(NIVEL_ED, CH06) %>% 
+            filter(complete.cases(.), NIVEL_ED %in% 1:7, CH06 > 18) %>% 
+            mutate(Nivel = factor(NIVEL_ED, levels = c(7, 1:6), labels = c("Sin instrucción",
+                                                                             "Primaria Incompleta",
+                                                                             "Primaria Completa",
+                                                                             "Secundaria Incompleta",
+                                                                             "Secundaria Completa",
+                                                                             "Superior Universitaria Incompleta",
+                                                                             "Superior Universitaria Completa"))) %>% 
+            group_by(Nivel) %>% 
+            summarise(f = n()) %>% 
+            mutate(Fa = cumsum(f), Fr = prop.table(f), Fra=cumsum(prop.table(f)))
+kable(tabla, digits = 2)            
+```
+
+  a) ¿Qué nivel de medición tiene la variable? Identifique el **modo**, la **mediana**. 
+  b) ¿Qué porcentaje de la muestra tiene un nivel educativo inferior o igual al Primario Completo? ¿Qué porcentaje tiene un nivel Universitario Incompleto o Superior?
+  c) ¿Cual es la suma de frecuencias de personas con formación universitaria completa e incompleta?
+
+3. La sigiente imagen es un histograma para los años que llevan asistiendo a la institución los participantes de la encuesta de CEPRAM.
+
+```{r histogramaedad, fig.height = 4}
+g <- cuestionario %>%
+    select(Años = AÑOS, grupos = GRUPOTOMA) %>%
+    filter(complete.cases(.), Años %in% 1:17) %>%
+    mutate(Años = as.numeric(Años)) %>% 
+    ggplot(aes(Años, y = ..count..))
+g + geom_histogram(fill = "blue", col = "black", center = 1, binwidth = 1) +
+    ylab("Frecuencia Absoluta")
+```
+
+Identifique el intervalo que contiene al **modo**. Especifique si la distribución es **simétrica**, **asimétrica a la izquierda** o **asimétrica a la derecha**.  
+
+
+
+4. El siguiente gráfico es un boxplot (tambíen llamado gráfico de cajas o bigotes) para la Edad de los participantes del CEPRAM, particionado por sexo.
+
+```{r boxplotedadsexo, fig.height = 4}
+g <- cuestionario %>% 
+    select(Edad = EDAD, Sexo = SEXO) %>% 
+    filter(complete.cases(.), Edad %in% 40:90, Sexo %in% 1:2) %>% 
+    mutate(Sexo = factor(Sexo, levels = 1:2, labels = c("Hombres", "Mujeres"))) %>% 
+    ggplot(aes(x = Sexo, y = Edad, fill = Sexo))
+g + geom_boxplot()
+```
+
+Describa el gráfico. Además, indique qué representan los extremos de las cajas, los extremos de los bigotes, la línea horizontal al medio de la caja y los puntos extremos.

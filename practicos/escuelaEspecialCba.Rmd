@@ -1,0 +1,40 @@
+---
+title: "Trabajo Práctico I"
+subtitle: "Psicoestadística. Facultad de Educación. UCC"
+author:
+  - Alfonso, Matías A.
+date: "11 de mayo de 2018"
+output: 
+  pdf_document:
+    includes:
+      in_header: header.tex
+      # before_body: doc.prefix.tex
+    df_print: kable
+    fig_caption: yes
+urlcolor: blue
+breaklinks: true
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, tidy = TRUE)
+```
+```{r cargodatos}
+library(DescTools) ## Para calcular el V de Cramer's
+library(readxl) ## Cargamos la librería para abrir el xls
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(e1071)
+```
+   
+## Actividad 
+
+Diríjase al siguiente link https://datosestadistica.cba.gov.ar/dataset/indicadores-del-ra-de-educacion y descargue el Anuario del Ministerio de Educación del Año 2016 de la provincia de Córdoba. 
+Responda las siguientes preguntas:  
+
+-  ¿Cuál es el total de alumnos matriculados en escuelas especiales en la provincia de Córdoba? ¿Cuál es el total para cada uno de los niveles: Inicial, Primario y Secundario?  
+- Calcule el porcentaje de alumnos matriculados en el nivel Primario, Secundario y Terciario con el total matriculado en todo el sistema educativo.  
+- Queremos saber cómo ha sido la integración de alumnos de colegios especiales a colegios comunes. Analice los gráficos de la página 166. Interprete. ¿La integración aumentó o disminuyó entre los años 2012 y 2016? ¿Cómo a sido esa evolución en los colegios públicos y en los colegios privados?  
+- Diríjase a las páginas 168 y 169. Calcule los porcentajes de alumnos que reciben integración de tipo **simultánea** y **apoyo** para los años 2012 y 2016, en relación al total de alumnos integrados. Compare y decscriba la variación de esos porcentajes a lo largo de esos años.
+

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1534973277848.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1695550009",
+    "id" : "42CBB078",
+    "lastKnownWriteTime" : 1528137824,
+    "last_content_update" : 1528137824,
+    "path" : "~/Escritorio/PsicoEstadistica/UCC/clases/01_NivelesMedicion/nivelesMedicion.Rmd",
+    "project_path" : "01_NivelesMedicion/nivelesMedicion.Rmd",
+    "properties" : {
+        "cursorPosition" : "140,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,158 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+urlcolor: blue
+---
+
+```{r setoptions, echo = FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE)
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+usuindividual <- read.csv2("../data/usu_individual_t117.txt")
+usuhogar <- read.csv2("../data/usu_hogar_t117.txt")
+cuestionario <- read.csv2("../data/cuestionario.csv")
+```
+# Práctico 1
+
+## Bases de datos
+En las siguientes actividades se trabajará principalmente con información extraída de las siguientes bases de datos.  
+
+* Base de datos de una encuesta de evaluación de CEPRAM. CEPRAM (Centro de Promoción del Adulto Mayor) es una fundación destinada a la promoción de la salud de los adultos mayores. Una de las actividades principales desarrollada por CEPRAM es el dictado de cursos en distintas áreas de conocimiento. (Para más información ver [www.cepram.org.ar](www.cepram.org.ar)) Su utilización se realiza con permiso de CEPRAM.  
+
+* Base de datos de la Ecuesta Permanente de Hogares (EPH) realizada por el Instituto Nacional de Estadística y Censos (INDEC) correspondiente al primer trimestre de 2017. EPH es un programa nacional de producción sistemática y permanente de indicadores sociales, que permite conocer las características sociodemográficas y socioeconómicas de la población. Es una base de datos de acceso público. (Para más información, acceda al sitio de [Indec](http://www.indec.gob.ar/bases-de-datos.asp)).
+
+Adicionalmente se consideraron situaciones ficticias a fines de ejemplificar algunos conceptos teóricos.
+
+## Actividades
+1. Se desea realizar un estudio para determinar que variables están relacionadas y predicen mejor el rendimiento escolar en alumnos de una escuela primaria de la Ciudad de Córdoba. Para ello se seleccionó aleatoriamente una muestra de alumnos de dicha escuela. Se evaluaron las siguientes variables: condición socioeconómica de los padres, nivel educativo de los padres, región de procedencia, índice de IQ. Identifique la unidad de análisis y las variables en dicho estudio.
+
+2. Se desea realizar un estudio para comparar el rendimiento académico entre escuelas públicas y privadas en la ciudad de Córdoba. Para ello se seleccionaron al azar 25 colegios privados y 25 colegios públicos. Se evaluó el promedio histórico y el puntaje obtenido en el Plan Aprender (Plan Nacional de Evaluación Educativa) en las diferentes areas de conocimiento. Identifique unidad de análisis y la variables en dicho estudio.
+
+3. Determine los niveles de medición de las siguientes variables. Indique, adicionalmente, que valores puede tomar cada una (p ej. la variable año de nacimiento no tiene un límite inferior definido, sin embargo el límite superior no puede ser mayor al año actual)
+
+Base EPH:
+
+* Sexo
+    1. Varón
+    2. Mujer
+    
+* Año de nacimiento
+* Nivel educativo:
+    1. Primaria Incompleta (incluye educación especial)
+    2. Primaria Completa
+    3. Secundaria Completa
+    5. Superior Universitaria Incompleta
+    6. Superior Universitaria Completa
+* Cuanto tiempo hace que trabaja en su empleo actual
+
+* Cuánto cobró en el último mes
+
+Base CEPRAM:  
+
+* Cómo está usted de satisfecho con su vida:
+    1. Nada
+    2. Algo
+    3. Bastante
+    4. Mucho
+    5. Totalmente
+
+* ¿Cuántas veces ha ido al médico en el último mes?
+
+* Indique su nivel de acuerdo. Uno de los principales motivos para acercarse al CEPRAM fue hacer amigos, insertarse en un grupo:
+    1. Nada importante
+    2. Poco importante
+    3. Importante
+    4. Muy importante
+
+4. Si somos estrictos, las siguientes variables están mal definidas. Justifique por qué, considerando las nociones de **exhaustividad** y **exclusión mutua**.
+
+* Nivel Educativo Alcanzado
+    1. Primario
+    2. Universitario
+    
+* Ocupación actual
+    1. Estudia
+    2. Trabaja
+    3. Desocupado
+    
+5. De la muestra correspondiente a la EPH se seleccionaron las personas mayores a 18 años que no tuvieron ningún nivel de instrucción educativo en la region del gran Córdoba. A continuación observamos las edades para esos casos
+
+```{r sininstruccion, results = "asis"}
+tabla <- usuindividual %>% 
+            filter(AGLOMERADO == 07, CH06 > 18, NIVEL_ED == 7) %>% 
+            select(Edad = CH06, Lee = CH09) %>% 
+            mutate(caso = 1:n()) %>% 
+            select(caso, Edad, Lee) %>% 
+            mutate(Lee = factor(Lee, levels = 1:2, labels = c("Si", "No")))
+print(kable(tabla))
+```
+
+* Calcule la **media**, la **varianza** y la **desviación estándar** para la variable Edad.
+* Realice una **tabla de distribución de frecuencias** para la variable **Edad**. Tome como referencia la siguiente tabla
+
+\newpage
+Edad    |   f   |   F   |   f'    | F'
+-------|--------|-------|--------|----
+[30, 40]||||
+-------|--------|-------|--------|----
+(40, 50]||||
+-------|--------|-------|--------|----
+(50, 60]||||
+-------|--------|-------|--------|----
+(60, 70]||||
+-------|--------|-------|--------|----
+(70, 80]||||
+
+* Identifique los intervalos que contienen a la **mediana** y la **moda** en la tabla anterior. Realice alguna descripción de lo observado. Por ejemplo: La mediana se encuentra entre los valores ... Esto quiere decir que el 50% de los casos se encuentra aproximadamente por debajo de ...
+* Realice un **tabla de distribución de frecuencias** para la variable **Lee**. En este caso, no es necesario que calcule las frecuencias acumuladas (F y F').
+
+6. La siguiente es una tabla de distribución de frecuencias para la variable nivel educativo (nivel máximo alcanzado) para personas mayores de 18 años de la EPH:   
+
+
+```{r tablafreq, results = "asis"}
+tabla <- usuindividual %>% 
+            select(CH12, CH06) %>% 
+            filter(complete.cases(.), CH12 %in% 1:8, CH06 > 18) %>% 
+            mutate(Nivel = factor(CH12, levels = 1:8, labels = c("Preescolar", "Primario", "EGB", 
+                                                         "Secundario", "Polimodal", "Terciario",
+                                                         "Universitario", "PosgradoUniversitario"))) %>% 
+            group_by(Nivel) %>% 
+            summarise(f = n()) %>% 
+            mutate(Fa = cumsum(f), Fr = prop.table(f), Fra=cumsum(prop.table(f)))
+print(kable(tabla))            
+```
+
+¿Qué nivel de medición tiene la variable? Identifique el **modo**, la **mediana**. ¿Qué porcentaje de la muestra tiene un nivel educativo inferior o igual al Primario? ¿Qué porcentaje tiene un nivel Terciario o Superior? ¿Cual es la suma de frecuencias de personas que completaron el Secundario y el Polimodal?
+
+7. La sigiente imagen es un histograma para los años que llevan asistiendo a la institución los participantes de la encuesta de CEPRAM.
+
+```{r histogramaedad, fig.height = 4}
+g <- cuestionario %>%
+    select(Años = AÑOS, grupos = GRUPOTOMA) %>%
+    filter(complete.cases(.), Años %in% 1:17) %>%
+    mutate(Años = as.numeric(Años)) %>% 
+    ggplot(aes(Años, y = ..count..))
+g + geom_histogram(fill = "blue", col = "black", center = 1, binwidth = 1) +
+    ylab("Frecuencia Absoluta")
+```
+
+Identifique el **modo**. Especifique si la distribución es **simétrica**, **asimétrica a la izquierda** o **asimétrica a la derecha**.  
+
+
+
+8. El siguiente gráfico es un boxplot (tambíen llamado gráfico de cajas o bigotes) para la Edad de los participantes del CEPRAM, particionado por sexo.
+
+```{r boxplotedadsexo, fig.height = 4}
+g <- cuestionario %>% 
+    select(Edad = EDAD, Sexo = SEXO) %>% 
+    filter(complete.cases(.), Edad %in% 40:90, Sexo %in% 1:2) %>% 
+    mutate(Sexo = factor(Sexo, levels = 1:2, labels = c("Hombres", "Mujeres"))) %>% 
+    ggplot(aes(x = Sexo, y = Edad, fill = Sexo))
+g + geom_boxplot()
+```
+
+Describa el gráfico. Además, indique qué representan los extremos de las cajas, los extremos de los bigotes, la línea horizontal al medio de la caja y los puntos extremos.
+
