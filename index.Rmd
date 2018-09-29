@@ -1,0 +1,12 @@
+---
+title: "Psicoestadística 2018 - UCC"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+# Presentaciones
+
+## Clase 1
+
