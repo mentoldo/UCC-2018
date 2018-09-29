@@ -32,3 +32,42 @@ remote: Resolving deltas:   0% (0/11)   [Kremote: Resolving deltas:   9% (1/11
 To https://github.com/mentoldo/UCC-2018.git
    b5da031..0368c4d  master -> master
 ]0;/home/psyche/Escritorio/PsicoEstadistica/UCC/clases]0;psyche@psyche-desktop: ~/Escritorio/PsicoEstadistica/UCC/clases[01;32mpsyche@psyche-desktop[00m:[01;34m~/Escritorio/PsicoEstadistica/UCC/clases[00m$ fil.e[K[Ke[K[K[K[Kgit add -A
+]0;/home/psyche/Escritorio/PsicoEstadistica/UCC/clases]0;psyche@psyche-desktop: ~/Escritorio/PsicoEstadistica/UCC/clases[01;32mpsyche@psyche-desktop[00m:[01;34m~/Escritorio/PsicoEstadistica/UCC/clases[00m$ git commit m[K-m "se arreg[K[K[K[K[K[K[K[Kse[K[Ks[KSe edit [K[Kto la pagio[Kna de clases"
+[master 38ed8ee] Se edito la pagina de clases
+ 4 files changed, 52 insertions(+), 7 deletions(-)
+ rewrite .Rproj.user/133DA93E/console06/F3ABF067 (100%)
+]0;/home/psyche/Escritorio/PsicoEstadistica/UCC/clases]0;psyche@psyche-desktop: ~/Escritorio/PsicoEstadistica/UCC/clases[01;32mpsyche@psyche-desktop[00m:[01;34m~/Escritorio/PsicoEstadistica/UCC/clases[00m$ [K]0;psyche@psyche-desktop: ~/Escritorio/PsicoEstadistica/UCC/clases[01;32mpsyche@psyche-desktop[00m:[01;34m~/Escritorio/PsicoEstadistica/UCC/clases[00mm$ [K[A]0;psyche@psyche-desktop: ~/Escritorio/PsicoEstadistica/UCC/clases[01;32mpsyche@psyche-desktop[00m:[01;34m~/Escritorio/PsicoEstadistica/UCC/clases[00m$ git push
+fatal: cannot run rpostback-askpass: No existe el archivo o el directorio
+Username for 'https://github.com': met ntodl  ldo
+fatal: cannot run rpostback-askpass: No existe el archivo o el directorio
+Password for 'https://mentoldo@github.com': 
+Contando objetos: 9, listo.
+Delta compression using up to 6 threads.
+Comprimiendo objetos:  11% (1/9)   Comprimiendo objetos:  22% (2/9)   Comprimiendo objetos:  33% (3/9)   Comprimiendo objetos:  44% (4/9)   Comprimiendo objetos:  55% (5/9)   Comprimiendo objetos:  66% (6/9)   Comprimiendo objetos:  77% (7/9)   Comprimiendo objetos:  88% (8/9)   Comprimiendo objetos: 100% (9/9)   Comprimiendo objetos: 100% (9/9), listo.
+Escribiendo objetos:  11% (1/9)   Escribiendo objetos:  22% (2/9)   Escribiendo objetos:  33% (3/9)   Escribiendo objetos:  44% (4/9)   Escribiendo objetos:  55% (5/9)   Escribiendo objetos:  66% (6/9)   Escribiendo objetos:  77% (7/9)   Escribiendo objetos:  88% (8/9)   Escribiendo objetos: 100% (9/9)   Escribiendo objetos: 100% (9/9), 2.35 KiB | 2.35 MiB/s, listo.
+Total 9 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/4)   [Kremote: Resolving deltas:  25% (1/4)   [Kremote: Resolving deltas:  50% (2/4)   [Kremote: Resolving deltas:  75% (3/4)   [Kremote: Resolving deltas: 100% (4/4)   [Kremote: Resolving deltas: 100% (4/4), completed with 4 local objects.[K
+To https://github.com/mentoldo/UCC-2018.git
+   0368c4d..38ed8ee  master -> master
+]0;/home/psyche/Escritorio/PsicoEstadistica/UCC/clases]0;psyche@psyche-desktop: ~/Escritorio/PsicoEstadistica/UCC/clases[01;32mpsyche@psyche-desktop[00m:[01;34m~/Escritorio/PsicoEstadistica/UCC/clases[00m$ gitl[K add -a
+error: unknown switch `a'
+uso: git add [<opción>] [--] <especificación-de-ruta>...
+
+    -n, --dry-run         dry run ( ejecución en seco)
+    -v, --verbose         ser verboso
+
+    -i, --interactive     selección interactiva
+    -p, --patch           elegir hunks de forma interactiva
+    -e, --edit            editar diff actual y aplicar
+    -f, --force           permitir agregar caso contrario ignorar archivos
+    -u, --update          actualizado las carpetas rastreadas
+    --renormalize         renormalizar EOL de los archivos rastreados (implica -u)
+    -N, --intent-to-add   grabar solo el hecho de que la ruta será agregada después
+    -A, --all             agregar los cambios de todas las carpetas con y sin seguimiento
+    --ignore-removal      ignorar rutas removidas en el árbol de trabajo (lo mismo que --no-all)
+    --refresh             no agregar, solo actualizar el índice
+    --ignore-errors       saltar las carpetas que no pueden ser agregadas a causa de errores
+    --ignore-missing      comprobar si - incluso los archivos que faltan - se ignoran en dry run
+    --chmod <(+/-)x>      sobrescribir el bit ejecutable de los archivos listados
+
+]0;/home/psyche/Escritorio/PsicoEstadistica/UCC/clases]0;psyche@psyche-desktop: ~/Escritorio/PsicoEstadistica/UCC/clases[01;32mpsyche@psyche-desktop[00m:[01;34m~/Escritorio/PsicoEstadistica/UCC/clases[00m$ git c[K[K[K[K[Kgit add -A
