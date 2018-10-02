@@ -34,3 +34,22 @@ df <- data.frame(edad, sexo, npalabras)
 ## Escribimos la base en un archivo
 write.csv2(df, "./data/npalabras1000.csv", row.names = FALSE)
 
+
+
+## n = 5
+## Ejemplo memoria con 5 casos
+edad <- round(runif(5, 18, 25))
+sexo <- sample(c(rep(1, 3), rep(2, 2)))
+sexo <- factor(sexo,
+               levels = 1:2,
+               labels = c("hombre",
+                          "mujer"))
+
+npalabras <- round(rnorm(5, 18, sd = 2))
+df <- data.frame(edad, sexo, npalabras)
+
+## Escribimos la base en un archivo
+write.csv2(df, "./data/npalabras5.csv", row.names = FALSE)
+
+
+
