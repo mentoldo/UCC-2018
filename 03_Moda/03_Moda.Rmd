@@ -1,0 +1,60 @@
+---
+title: "Moda"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: true
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+## Para poder imprimir las tablas con kable_styling
+options("kableExtra.html.bsTable" = T)
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+## Moda
+
+* Es **la categoría** de la variable con **mayor frecuencia**
+* Lo indicaremos como $Mo$
+* Se puede calcular a partir del **nivel nominal**
+* Lo podemos observar en la tabla de distribución de frecuencias.
+* Puede haber más de un modo en una variable
+
+## Ejemplo
+
+```{r salud_satisfecho2}
+cepram <- read.csv2("../data/cuestionario.csv")
+
+freq1 <- cepram %>% 
+    filter(!is.na(SALUDSATIS), SALUDSATIS %in% 0:4) %>% 
+    mutate(salud_satisfecho = factor(SALUDSATIS,
+                                    levels = 0:4,
+                                    ordered = TRUE,
+                                    labels = c("Nada",
+                                               "Algo",
+                                               "Bastante",
+                                               "Mucho",
+                                               "Totalmente"))) %>% 
+    group_by(salud_satisfecho) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f), `F` = cumsum(f)) %>% 
+    mutate(`F'` = `F`/sum(f))
+
+kable(freq1, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+* El modo es **Bastante**, pues es el valor que más se repite.

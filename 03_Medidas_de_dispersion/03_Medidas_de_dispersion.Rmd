@@ -1,0 +1,168 @@
+---
+title: "Medidas de dispersión"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: false
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+## Para poder imprimir las tablas con kable_styling
+options("kableExtra.html.bsTable" = T)
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+## Medidas de dispersión
+
+* Las medidas de dispersión nos indican que tan juntos o separados están los valores de las variables.
+* Por ejemplo. Imaginemos que tomamos un exámen a 10 personas y todas obtienen una calificación de 7. La media($\bar{x}$) de esta variables es 7.
+* Ahora, repetimos el ensayo con otras 10 personas. Ahora, 5 personas obtienen una calificación de 4, y 5 personas obtienen una calificación de 10. La media($\bar{x}$) de esta variable también es 7.
+* En el segundo caso, los valores tienen mayor dispersión.
+* Veremos diferentes medidas para evaluar la dispersión.
+
+## Rango o recorrido
+
+* Nivel **intervalar o superior**
+* Es la diferencia entre los valores máximo y mínimo
+
+## Ejemplo
+
+* Calculemos el rango para la edad de las personas que asisten a CEPRAM.
+
+```{r cepram_edad}
+cepram <- read.csv2("../data/cuestionario.csv")
+
+cepram <- cepram %>% 
+    filter(!is.na(EDAD), EDAD %in% 30:100)
+
+edad <- range(cepram$EDAD)
+names(edad) <- c("minimo", "maximo")
+edad <- data.frame(edad)
+
+kable(edad, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+* Entonces, el rango es $88 - 50 = 38$
+
+## Rango (o recorrido) intercuartilar
+
+* Nivel **intervalar o superior**
+* Es la diferencia entre el 3er y el 1er cuartil
+
+## Ejemplo
+
+* Calculemos algunas medidas de resument para la edad de las personas que asisten a CEPRAM
+
+```{r cepram_edad2}
+df <- summary(cepram$EDAD)
+names(df) <- c("Min", "1Q", "Mediana", "Media", "3Q", "Max")
+df <- as.matrix(df)
+
+
+kable(t(df), digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+* La distancia entre el 3er y el 1er cuartil es igual a
+
+$$ 73 - 64 = 9 $$
+
+* Entonces, el rango intercuartilar es igual a 9
+
+## Varianza
+
+* Antes de describir la varianza, pensemos un poco en la media.
+* La media es una especie de centro de gravedad de los datos.
+* La media anula la suma de los desvíos en en torno suyo
+* Supongamos que tenemos la calificación de 4 alumnos:
+
+```{r media_anula}
+df <- c(4, 5, 7, 8)
+df <- data.frame(paste("x", 1:4, sep = ""), df)
+colnames(df) <- c("caso", "nota")
+
+kable(df, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+---
+
+* La media para esos valores es igual a 6. Restemoslé la media a cada una de las observaciones:
+```{r media_anula2}
+df <- df %>% 
+    mutate(resta = paste(nota, "- 6")) %>% 
+    mutate(res.resta = nota - 6)
+
+kable(df, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+* Si sumamos los valores de la última columna, observaremos que el resultado es 0.
+
+---
+
+* Si nosotros quisiéramos medir la dispersión de los datos, podríamos realizar los siguiente:
+* Elevar al cuadrado la diferencia de cada observación con respecto a su media (de esta manera los signos negativos desaparecen)
+* Luego, podemos sumar las distancias (al cuadrado) de cada observación con respecto a su media.
+* Obervemosló en el ejemplo anterior
+
+```{r dif_cuadrado}
+df <- df %>% 
+    mutate(resta.al.cuadrado = res.resta^2)
+
+kable(df, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+--- 
+
+* Observemos que, mientras más grande sea la distancia de los valores con respecto a su media, mayor será la suma de cuadrados.
+* Si sumamos los valores de esta última columna y lo dividimos por el total de casos menos 1, otenemos la **varianza**:
+
+$$ \frac{4 + 1 + 1 + 4}{4 - 1} = \frac{10}{3} = 3.33$$
+
+* Si a la varianza, le calculamos la raiz cuadrada, obtenemos el **desvío estándar**
+
+$$ \sqrt{2.5} = 1.82 $$
+
+## Varianza
+
+* Es la suma de los cuadrados de los desvíos alrededor de la media, dividida por el total de observaciones menos 1.
+* Se indica como $s^2$
+* En símbolos
+
+$$s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1} $$
+
+## Desvío estándar
+
+* Es la raíz cuadrada de la varianza
+* Se indica como $s$
+* En símbolos
+
+$$s = \sqrt{s^2}$$
+
+## Coeficiente de variación
+
+* Expresa de manera relativa la dispersión, comparando la dispersión con la media y expresándolo como porcentaje.
+* Se indica como $CV$
+* En símbolos
+
+$$CV = \frac{s}{\bar{x}} * 100$$

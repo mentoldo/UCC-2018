@@ -1,0 +1,92 @@
+---
+title: "Proporción"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: true
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+## Para poder imprimir las tablas con kable_styling
+options("kableExtra.html.bsTable" = T)
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+## Proporción
+
+* Es la **frecuencia relativa** correspondiente a una categoría particular
+* También se puede expresar como **porcentaje**.
+* Se indica con una **p**
+* **Nivel nominal** (o superior)
+
+## Ejemplo
+
+* Consideremos la variable del cuestionario de CEPRAM: ¿Cómo está de satisfecho con su estado de salud?
+    1. Nada
+    2. Algo
+    3. Bastante
+    4. Mucho
+    5. Totalmente
+
+* Realizamos una tabla de distribución de frecuencias
+
+--- 
+
+```{r salud_satisfecho}
+cepram <- read.csv2("../data/cuestionario.csv")
+
+freq1 <- cepram %>% 
+    filter(!is.na(SALUDSATIS), SALUDSATIS %in% 0:4) %>% 
+    mutate(salud_satisfecho = factor(SALUDSATIS,
+                                    levels = 0:4,
+                                    ordered = TRUE,
+                                    labels = c("Nada",
+                                               "Algo",
+                                               "Bastante",
+                                               "Mucho",
+                                               "Totalmente"))) %>% 
+    group_by(salud_satisfecho) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f), `F` = cumsum(f)) %>% 
+    mutate(`F'` = `F`/sum(f))
+
+kable(freq1, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+* Supogamos que queremos saber qué proporción de personas que asiste al CEPRAM está muy (Mucho) satisfecho con su vida.
+
+$$p = 0.25$$
+
+--- 
+
+* También podríamos queres saber que proporción de gente está Bastante, Mucho o Totalmente satisfecho (alto nivel de satisfacción con su estado de salud) y compararlo con el porcentaje de gente que está nada o algo satisfecho (bajo nivel de satisfacción con su estado de salud).
+* Primero calculemos la proporción de personas con bajo nivel de satisfacción. Para ello, debemos sumar las proporciones de las categorías **Algo** y **Nada**. Pero esto ya lo hicimos en la columna **F'**.
+
+$$ p = 0.10 $$
+
+--- 
+
+* Para calcular la proporción de personas con **alto nivel de satisfacción** tenemos dos opciones. Una opción es sumar las proporciónde de las categorías **Bastante**, **Mucho** y **Totalmente**:
+
+$$0.48 + 0.25 + 0.18 = 0.91$$
+
+* Otra opción es, al total, que es 1, restarle la frecuencia relativa acumulada hasta la categoría **Algo**:
+
+$$1 - 0.48 = 0.91$$
+
+* Entonces, la proporción de personas de CEPRAM que tiene un alto nivel de satisfacción con su salud es de 0.91.
+

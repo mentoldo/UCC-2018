@@ -1,0 +1,101 @@
+---
+title: "Media"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: true
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+## Para poder imprimir las tablas con kable_styling
+options("kableExtra.html.bsTable" = T)
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+## Medidas de tendencia central: Media
+
+* Es el promedio o media aritmética.
+* Se calcula sumando todas las observaciones y dividiendo por el total de casos.
+* Se representa con el símbolo $\bar{x}$
+* Se puede calcular a partir del **nivel intervalar**
+
+---
+
+La definición, en símbolos, es la siguiente:
+
+
+$$
+\begin{equation*}
+    \bar{x} = 
+    \frac{\displaystyle{\sum_{i=0}^n x_i}}{n}
+\end{equation*}
+$$
+Donde:  
+$n$ : cantidad de casos  
+$\sum_{i=0}^n x_i$ : es la suma de todas las observaciones de la varibles. Es una manera resumida de escribir: $x_1 + x_2 + x_3 + \dots + x_n$, donde $x_1$ es la primera observación, $x_2$ la segunda, y así susesivamente hasta la observación $x_n$ 
+
+--- 
+
+Retomemos el experimento de memoria, con 10 casos, y calculemos la media para el número de palabras recordadas.
+
+```{r matriz_npalabras_media}
+npalabras <- read.csv2("../data/npalabras.csv")
+
+kable(npalabras) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)  %>% 
+     scroll_box(width = "100%", height = "500px")
+```
+
+---
+
+<div class = "build">
+
+Retomemos la definición:
+
+$$ \frac{x_1 + x_2 + x_3 + \dots + x_n}{n} $$
+
+Reemplazamos con los valores observados:
+
+$$ \frac{19 + 15 + 9 + 17 + 16 + 12 + 14 + 17 + 17}{10} \\ = \frac{151}{10} = 15.1 $$
+
+</div>
+
+---
+
+Entonces, la media de palabras recordadas es de 15.1
+
+$$ \bar{x} = 15.1 $$
+
+## Media y valores extremos.
+
+* La **media**, a diferencia de la **mediana** es una medida sensible a valores extremos.
+* Imaginemos la siguiente situación. Un comercio tiene 10 empleados, 9 empleados cobran $15000 y 1, el gerente, cobra $75000.
+* Realice el cálculo de la media y la mediana para el ejemplo.
+* Las medidas de resumen para este caso son:  
+
+
+<div class = "build">
+
+$$ Me = 15000 \\ \bar{x} = 21000 $$
+
+</div>
+
+---
+
+* Podemos observar que un solo caso, el del gerente, eleva el valor de la media. Esto no pasa con la mediana.
+* Si le informamos a los empleados que el sueldo promedio del comercio es de $21000 probablemente estén disconformes o no se sientan representados.
+* Esto nos permite observar que la elección de las medidas de resumen para transmitir información también dependerá de los objetivos del estudio.
+

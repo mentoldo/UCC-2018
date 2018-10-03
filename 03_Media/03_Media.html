@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Media',
+                        subtitle: 'Universidad Católica de Córdoba',
+                useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                        favIcon: '03_Media_files/logo.png',
+              },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Matías A. Alfonso' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <link href="03_Media_files/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="03_Media_files/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="03_Media_files/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="03_Media_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="03_Media_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="03_Media_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="03_Media_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="03_Media_files/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="03_Media_files/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="03_Media_files/ioslides-13.5.1/js/slide-deck.js"></script>
+  <script src="03_Media_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="03_Media_files/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+    slides > slide:not(.nobackground):before {
+      font-size: 12pt;
+      content: "";
+      position: absolute;
+      bottom: 20px;
+      left: 60px;
+      background: url(03_Media_files/logo.png) no-repeat 0 50%;
+      -webkit-background-size: 30px 30px;
+      -moz-background-size: 30px 30px;
+      -o-background-size: 30px 30px;
+      background-size: 30px 30px;
+      padding-left: 40px;
+      height: 30px;
+      line-height: 1.9;
+    }
+  </style>
+
+  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <aside class="gdbar"><img src="03_Media_files/logo.png"></aside>
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">02 octubre, 2018</p>
+          </hgroup>
+  </slide>
+
+<slide class=""><hgroup><h2>Medidas de tendencia central: Media</h2></hgroup><article  id="medidas-de-tendencia-central-media">
+
+<ul class = 'build'>
+<li>Es el promedio o media aritmética.</li>
+<li>Se calcula sumando todas las observaciones y dividiendo por el total de casos.</li>
+<li>Se representa con el símbolo \(\bar{x}\)</li>
+<li>Se puede calcular a partir del <strong>nivel intervalar</strong></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>La definición, en símbolos, es la siguiente:</p>
+
+<p>\[
+\begin{equation*}
+    \bar{x} = 
+    \frac{\displaystyle{\sum_{i=0}^n x_i}}{n}
+\end{equation*}
+\] Donde:<br/>\(n\) : cantidad de casos<br/>\(\sum_{i=0}^n x_i\) : es la suma de todas las observaciones de la varibles. Es una manera resumida de escribir: \(x_1 + x_2 + x_3 + \dots + x_n\), donde \(x_1\) es la primera observación, \(x_2\) la segunda, y así susesivamente hasta la observación \(x_n\)</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>Retomemos el experimento de memoria, con 10 casos, y calculemos la media para el número de palabras recordadas.</p>
+
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="text-align:right;">
+
+edad
+
+</th>
+
+<th style="text-align:left;">
+
+sexo
+
+</th>
+
+<th style="text-align:right;">
+
+npalabras
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:right;">
+
+21
+
+</td>
+
+<td style="text-align:left;">
+
+hombre
+
+</td>
+
+<td style="text-align:right;">
+
+19
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+21
+
+</td>
+
+<td style="text-align:left;">
+
+hombre
+
+</td>
+
+<td style="text-align:right;">
+
+15
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+19
+
+</td>
+
+<td style="text-align:left;">
+
+hombre
+
+</td>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+24
+
+</td>
+
+<td style="text-align:left;">
+
+hombre
+
+</td>
+
+<td style="text-align:right;">
+
+17
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+19
+
+</td>
+
+<td style="text-align:left;">
+
+hombre
+
+</td>
+
+<td style="text-align:right;">
+
+16
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+18
+
+</td>
+
+<td style="text-align:left;">
+
+mujer
+
+</td>
+
+<td style="text-align:right;">
+
+15
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+25
+
+</td>
+
+<td style="text-align:left;">
+
+mujer
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+19
+
+</td>
+
+<td style="text-align:left;">
+
+hombre
+
+</td>
+
+<td style="text-align:right;">
+
+14
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+24
+
+</td>
+
+<td style="text-align:left;">
+
+hombre
+
+</td>
+
+<td style="text-align:right;">
+
+17
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+18
+
+</td>
+
+<td style="text-align:left;">
+
+mujer
+
+</td>
+
+<td style="text-align:right;">
+
+17
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="build">
+<p>Retomemos la definición:</p>
+
+<p>\[ \frac{x_1 + x_2 + x_3 + \dots + x_n}{n} \]</p>
+
+<p>Reemplazamos con los valores observados:</p>
+
+<p>\[ \frac{19 + 15 + 9 + 17 + 16 + 12 + 14 + 17 + 17}{10} \\ = \frac{151}{10} = 15.1 \]</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>Entonces, la media de palabras recordadas es de 15.1</p>
+
+<p>\[ \bar{x} = 15.1 \]</p>
+
+</article></slide><slide class=""><hgroup><h2>Media y valores extremos.</h2></hgroup><article  id="media-y-valores-extremos.">
+
+<ul class = 'build'>
+<li>La <strong>media</strong>, a diferencia de la <strong>mediana</strong> es una medida sensible a valores extremos.</li>
+<li>Imaginemos la siguiente situación. Un comercio tiene 10 empleados, 9 empleados cobran $15000 y 1, el gerente, cobra $75000.</li>
+<li>Realice el cálculo de la media y la mediana para el ejemplo.</li>
+<li>Las medidas de resumen para este caso son:</li>
+</ul>
+
+<div class="build">
+<p>\[ Me = 15000 \\ \bar{x} = 21000 \]</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<ul class = 'build'>
+<li>Podemos observar que un solo caso, el del gerente, eleva el valor de la media. Esto no pasa con la mediana.</li>
+<li>Si le informamos a los empleados que el sueldo promedio del comercio es de $21000 probablemente estén disconformes o no se sientan representados.</li>
+<li>Esto nos permite observar que la elección de las medidas de resumen para transmitir información también dependerá de los objetivos del estudio.</li>
+</ul></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

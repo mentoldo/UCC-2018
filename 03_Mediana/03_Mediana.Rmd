@@ -1,0 +1,181 @@
+---
+title: "Mediana"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: true
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+## Para poder imprimir las tablas con kable_styling
+options("kableExtra.html.bsTable" = T)
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+## Mediana
+
+* Es el valor de la variable que deja por debajo el 50% de los casos. Deja por debajo y por arriba la misma cantidad de casos.
+* La indicaremos como $Me$
+* Se puede calcular a partir del **nivel ordinal**
+* También lo podemos observar en la tabla de distribución de frecuencias a partir de la F'.
+
+## Ejemplo
+
+* Retomemos el experimento de memoria:
+
+* Se realiza una prueba de memoria a 5 personas. Se les pide que memoricen una lista de 20 palabras. Se registra la Edad, el Sexo y el Número de Palabras Recordadas. la matriz de datos queda conformada de la siguiente manera:
+
+```{r matriz_npalabras5}
+npalabras <- read.csv2("../data/npalabras5.csv")
+
+kable(npalabras) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+---
+
+* Vamos a calcular la mediana para el número de palabras recordadas.
+* Una manera de hacerlo es ordenar las filas, de menor a mayor, por el número de palabras recordadas. Esto es posible, ya que la variable **npalabras** tiene nivel de medición **proporcional**, por lo que conserva la **propiedad de orden**.
+
+---
+
+```{r matriz_npalabras5_ordenadas}
+npalabras <- npalabras %>% 
+                arrange(npalabras) %>% 
+                mutate(orden = (1:length(npalabras)))
+
+kable(npalabras) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+---
+
+* Se agregó una variable que indica el posición para los valores de *npalabras*
+* Tenemos 5 casos (n = 5), entonces, buscaremos el valor que ocupa la posición 3. Este valor deja por encima y por debajo, dos casos.
+* Buscamos el número de palabras que corresponde a la posición 3, que en este caso es 17.
+
+---
+
+* Realicemos los mismo, pero ahora considerando 10 casos
+
+```{r matriz_npalabras}
+npalabras <- read.csv2("../data/npalabras.csv")
+
+kable(npalabras) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+---
+
+* Ordenamos los valores de menor a mayor
+
+```{r matriz_npalabras_ordenadas}
+npalabras <- npalabras %>% 
+                arrange(npalabras) %>% 
+                mutate(orden = (1:length(npalabras)))
+
+kable(npalabras) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F)
+```
+
+--- 
+
+* Como el número de casos es 10, un número par, una manera de calcular la mediana es calcular el promedio entre los dos valores centrales, es decir, entre los valores de la variable que ocupan la posición 5 y 6, que en este caso son 15 y 16.
+* Luego, calculamos el promedio:
+
+$$\frac{15 + 16}{2} = 15.5$$
+
+---
+
+* Supongamos ahora que en vez de diez casos, tenemos 1000. Deberíamos repetir el procedimiento anterior, ordenar los casos en función de los valores de *npalabras*, buscar los valores que ocupan la posición 500 y 501 y promediarlos.
+* Otra manera de realizar esto mediana es utilizar la tabla de distribución de frecuencias.
+* En este caso, buscamos el primer valor de **npalabras** que acumule el 50% de los casos.
+* Veamos la tabla de distribución de frecuencias en este caso:
+
+---
+
+```{r freq_palabras3}
+npalabras2 <- read.csv2("../data/npalabras1000.csv")
+
+freqpalabras2 <- npalabras2 %>%
+    group_by(npalabras) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f), `F` = cumsum(f)) %>% 
+    mutate(`F'` = `F`/sum(f))
+
+kable(freqpalabras2, digits = 2) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F) %>% 
+     scroll_box(width = "100%", height = "500px")
+
+```
+
+---
+
+* Nos fijamos en F' y buscamos la primer frecuencia relativa acumulada que supere 0.5.
+* Buscamos el valor de npalabras al que corresponde.
+
+---
+
+```{r freq_palabras4}
+npalabras2 <- read.csv2("../data/npalabras1000.csv")
+
+freqpalabras2 <- npalabras2 %>%
+    group_by(npalabras) %>% 
+    summarise(f = n()) %>% 
+    mutate(`f'` = f/sum(f), `F` = cumsum(f)) %>% 
+    mutate(`F'` = `F`/sum(f)) %>% 
+    mutate(`F'` = cell_spec(`F'`,
+                            color = ifelse(npalabras == 15, "black", "grey"),
+                            bold = npalabras == 15)) %>% 
+    mutate(npalabras = cell_spec(npalabras,
+                            color = ifelse(npalabras == 15, "black", "grey"),
+                            bold = npalabras == 15, 
+                            underline = npalabras == 15))
+                            # color = c(rep("grey", 5),
+                            #           "black",
+                            #           rep("grey", 6)),
+                            # bold = c(rep(FALSE, 5),
+                            #          TRUE,
+                            #          rep(FALSE, 6))))
+
+kable(freqpalabras2, digits = 2, escape = F) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                  full_width = F) %>% 
+    column_spec(5, background = "tomato") %>% 
+    row_spec(6, background = "tomato") %>% 
+     scroll_box(width = "100%", height = "500px")
+```
+
+---
+
+* Encontramos entonces que la **mediana** es 15
+
+# Medidas de tendencia no-central
+
+## Cuartiles y percentiles
+
+* Así como la mediana deja por debajo el %50 de los casos, podemos buscar medidas para porcentajes arbitrarios.
+* Los **cuartiles** dividen el conjunto de datos en 4. El **1er cuartil** deja por debajo el 25% de los casos. El **2do cuartil** es igual que la mediana. El **3er cuartil** deja por debajo el %75 de los casos.
+* Los **percentiles** dividen el conjunto de datos en 100. Por ej: el **percentil 15** deja por debajo el 15% de los casos. El **percentil 25** es igual al **1er cuartil**. El **percentil 50** es igual al **2do cuartil** e igual a la **mediana**.
+
+--- 
+
+* Al igual que la mediana, estas medidas necesitan un nivel de medición **ordinal o superior**.
+* Al igual que en la mediana podemos buscar los cuartiles y percentiles en la tabla de distribución de frecuencias.
