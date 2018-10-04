@@ -1,5 +1,5 @@
 ---
-title: "Medidas de dispersión"
+title: "Medidas de forma"
 subtitle: "Universidad Católica de Córdoba"
 author: Matías A. Alfonso
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -8,7 +8,7 @@ output:
       css: "../css/styles.css"
       self_contained: false
       logo: "../img/logo_UCC.png"
-      incremental: false
+      incremental: true
       df_print: kable
 ---
 
@@ -23,3 +23,166 @@ library(kableExtra)
 library(ggplot2)
 library(dplyr)
 ```
+
+## Distribución Normal
+
+* La distribución normal es un concepto teórico que nos permite aproximar el comportamiento de una gran cantidad de varibles.
+* Existe una definición matemática precisa de la distribución normal que excede los alcances de este curso.
+* Nos conformaremos con saber que la distribución normal tiene una forma acampanada.
+
+---
+
+```{r normal}
+ggplot(data.frame(x = 0), aes(x = x)) +
+    stat_function(fun = dnorm, col = "black", size = 1) + 
+    xlim(c(-3, 3)) +
+    theme_minimal() +
+    theme(
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) +
+    labs(x = NULL, y = NULL)
+```
+
+## Ejemplo
+
+Imaginemos que queremos observar la altura promedio de las personas que asisten al CEPRAM y realizamos un gráfico de distribución de frecuencias.
+
+---
+
+```{r cepram_edad_normal}
+cepram <- read.csv2("../data/cuestionario.csv")
+
+intervalo <- seq(50, 90, by = 5)
+
+cepram %>% 
+    filter(!is.na(EDAD), EDAD != 0, EDAD > 30, EDAD < 120) %>% 
+    ggplot(aes(x = EDAD)) +
+    geom_histogram(breaks = intervalo, fill = "steelblue2", col = "grey10") +
+    labs(x = "Edad", y = "Frecuencia absoluta") +
+    theme_light()
+
+```
+
+--- 
+
+* Podemos observar que la edad sigue una distribución aproximadamente normal.
+
+
+## Curtosis
+
+* La curtosis nos da información acerca de los valores extremos o colas de la distribución.
+* Mayor curtosis no implica mayor varianza, ni viceversa.
+* Se clasifica en:
+    - Leptocúrtica
+    - Mesocúrtica
+    - Platicúrtica  
+* La distribución normal es *mesocúrtica*. La forma *leptocúrtica* contiene mayores valores extremos y la *platicúrtica* contiene menos.
+
+--- 
+
+```{r kurtosis}
+## Semicírculo
+semicirculo <- function(x){
+    2/(pi*2^2) * sqrt(2^2 - x^2)
+}
+
+ggplot(data.frame(x = 0), aes(x = x)) +
+    stat_function(fun = dnorm, aes(color = "Mesocúrtica(Normal)"), size = 1) + 
+    stat_function(fun = dt, args = list(df = 1), aes(color = "Leptocúrtica"), size = 1) +
+    stat_function(fun = semicirculo, xlim = c(-2, 2), aes(color = "Platicúrtica"), size = 1) +
+    xlim(-3, 3) +
+    scale_color_manual("Kurtosis", values = c("tomato", "black", "lightblue")) +
+    theme_minimal() +
+    theme(
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) +
+    labs(x = NULL, y = NULL)
+```
+
+
+---
+
+* Los softwares estadísticos en general calculan un índice de curtosis.
+* Un índice entre -0.5 y 0.5 indica que la distribución es mesocúrtica.
+* Un índice mayor a 0.5 indica que la distribución es leptocúrtica
+* Un índice menor que -0.5 indica que la distribución de platicúrtica
+
+## Asimetría
+
+* La asimetría nos indica hacia que lado de la distribución se sitúan los valores extremos.
+* Una distribución es simétrica si la **media** coincide con la **mediana**
+* Si los valores extremos se ubican a la izquierda, diremos que la distribución es **asimétrica a la izquierda**. En este caso, la **media** es menor que la **mediana**
+* Si los valores extremos se ubican a la derecha, diremos que la distribución es **asimétrica a la derecha**. En este caso, la **media** es mayor que la **mediana**
+* Veámoslo en gráficos
+
+## Simétrica
+
+```{r simétrica}
+ggplot(data.frame(x = 0), aes(x = x)) +
+    stat_function(fun = dnorm, col = "black", size = 1) + 
+    xlim(c(-3, 3)) +
+    theme_minimal() +
+    theme(
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) +
+    labs(x = NULL, y = NULL)
+```
+
+## Asimétrica a la izquierda
+
+```{r asimetrica_izq}
+ggplot(data.frame(x = 0), aes(x = x)) +
+    stat_function(fun = function(x){dlnorm(-x)}, xlim = c(-5, 0)) + 
+    theme_minimal() +
+    theme(
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) +
+    labs(x = NULL, y = NULL)
+```
+
+## Asimetría derecha
+
+```{r asimetrica_der}
+ggplot(data.frame(x = 0), aes(x = x)) +
+    stat_function(fun = dlnorm, xlim = c(0, 5), size = 1) + 
+    theme_minimal() +
+    theme(
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) +
+    labs(x = NULL, y = NULL)
+```
+
+## Ejemplo
+
+* Realizamos un histograma para total de ingreso individual(P47T) en la EPH del 2do Trimestre de 2017.
+
+---
+
+```{r ejemplo_eph}
+eph <- read.csv2("../data/usu_individual_t117.txt")
+
+eph %>% 
+    filter(CH06 > 18, P47T != -9) %>% 
+    select(total_individual = P47T) %>% 
+    ggplot(aes(x = total_individual)) +
+    geom_histogram(col = "black", fill = "sienna1", bins = 30) +
+    scale_x_continuous(labels = scales::dollar) +
+    labs(y = "f", x = "Total de Ingresos Individuales") +
+    theme_bw()
+```
+
+---
+
+
+```{r ejemplo_eph2}
+eph <- read.csv2("../data/usu_individual_t117.txt")
+
+base <- eph %>% 
+            filter(CH06 > 18, P47T != -9) %>% 
+            select(total_individual = P47T)
+```
+
+* El total de ingresos individual es claramente asimétrico a la derecha.
+* Se puede observar que casi la mayoría de las personas tiene un ingreso entre $0 y $50.000. Sin embargo, algunas pocas personas tienen un nivel de ingresos de hasta $500.000. 
+* La media para el nivel de ingresos es: `r paste("$", round(mean(base$total_individual), 2), sep = "")`. Y la mediana es: `r paste("$", round(median(base$total_individual), 2), sep = "")`.
+* Podemos observar que la media es mayor que la mediana.

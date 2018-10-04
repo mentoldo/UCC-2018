@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medidas de forma</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Medidas de forma',
+                        subtitle: 'Universidad Católica de Córdoba',
+                useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                        favIcon: '03_Medidas_de_forma_files/logo.png',
+              },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Matías A. Alfonso' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <link href="03_Medidas_de_forma_files/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="03_Medidas_de_forma_files/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="03_Medidas_de_forma_files/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="03_Medidas_de_forma_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="03_Medidas_de_forma_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="03_Medidas_de_forma_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="03_Medidas_de_forma_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="03_Medidas_de_forma_files/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="03_Medidas_de_forma_files/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="03_Medidas_de_forma_files/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+    slides > slide:not(.nobackground):before {
+      font-size: 12pt;
+      content: "";
+      position: absolute;
+      bottom: 20px;
+      left: 60px;
+      background: url(03_Medidas_de_forma_files/logo.png) no-repeat 0 50%;
+      -webkit-background-size: 30px 30px;
+      -moz-background-size: 30px 30px;
+      -o-background-size: 30px 30px;
+      background-size: 30px 30px;
+      padding-left: 40px;
+      height: 30px;
+      line-height: 1.9;
+    }
+  </style>
+
+  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <aside class="gdbar"><img src="03_Medidas_de_forma_files/logo.png"></aside>
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">03 octubre, 2018</p>
+          </hgroup>
+  </slide>
+
+<slide class=""><hgroup><h2>Distribución Normal</h2></hgroup><article  id="distribucion-normal">
+
+<ul class = 'build'>
+<li>La distribución normal es un concepto teórico que nos permite aproximar el comportamiento de una gran cantidad de varibles.</li>
+<li>Existe una definición matemática precisa de la distribución normal que excede los alcances de este curso.</li>
+<li>Nos conformaremos con saber que la distribución normal tiene una forma acampanada.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="03_Medidas_de_forma_files/figure-html/normal-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Ejemplo</h2></hgroup><article  id="ejemplo">
+
+<p>Imaginemos que queremos observar la altura promedio de las personas que asisten al CEPRAM y realizamos un gráfico de distribución de frecuencias.</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="03_Medidas_de_forma_files/figure-html/cepram_edad_normal-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<ul class = 'build'>
+<li>Podemos observar que la edad sigue una distribución aproximadamente normal.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Curtosis</h2></hgroup><article  id="curtosis">
+
+<ul class = 'build'>
+<li>La curtosis nos da información acerca de los valores extremos o colas de la distribución.</li>
+<li>Mayor curtosis no implica mayor varianza, ni viceversa.</li>
+<li>Se clasifica en:
+
+<ul class = 'build'>
+<li>Leptocúrtica</li>
+<li>Mesocúrtica</li>
+<li>Platicúrtica<br/></li>
+</ul></li>
+<li>La distribución normal es <em>mesocúrtica</em>. La forma <em>leptocúrtica</em> contiene mayores valores extremos y la <em>platicúrtica</em> contiene menos.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="03_Medidas_de_forma_files/figure-html/kurtosis-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<ul class = 'build'>
+<li>Los softwares estadísticos en general calculan un índice de curtosis.</li>
+<li>Un índice entre -0.5 y 0.5 indica que la distribución es mesocúrtica.</li>
+<li>Un índice mayor a 0.5 indica que la distribución es leptocúrtica</li>
+<li>Un índice menor que -0.5 indica que la distribución de platicúrtica</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Asimetría</h2></hgroup><article  id="asimetria">
+
+<ul class = 'build'>
+<li>La asimetría nos indica hacia que lado de la distribución se sitúan los valores extremos.</li>
+<li>Una distribución es simétrica si la <strong>media</strong> coincide con la <strong>mediana</strong></li>
+<li>Si los valores extremos se ubican a la izquierda, diremos que la distribución es <strong>asimétrica a la izquierda</strong>. En este caso, la <strong>media</strong> es menor que la <strong>mediana</strong></li>
+<li>Si los valores extremos se ubican a la derecha, diremos que la distribución es <strong>asimétrica a la derecha</strong>. En este caso, la <strong>media</strong> es mayor que la <strong>mediana</strong></li>
+<li>Veámoslo en gráficos</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Simétrica</h2></hgroup><article  id="simetrica">
+
+<p><img src="03_Medidas_de_forma_files/figure-html/sim%C3%A9trica-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Asimétrica a la izquierda</h2></hgroup><article  id="asimetrica-a-la-izquierda">
+
+<p><img src="03_Medidas_de_forma_files/figure-html/asimetrica_izq-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Asimetría derecha</h2></hgroup><article  id="asimetria-derecha">
+
+<p><img src="03_Medidas_de_forma_files/figure-html/asimetrica_der-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Ejemplo</h2></hgroup><article  id="ejemplo-1">
+
+<ul class = 'build'>
+<li>Realizamos un histograma para total de ingreso individual(P47T) en la EPH del 2do Trimestre de 2017.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="03_Medidas_de_forma_files/figure-html/ejemplo_eph-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<ul class = 'build'>
+<li>El total de ingresos individual es claramente asimétrico a la derecha.</li>
+<li>Se puede observar que casi la mayoría de las personas tiene un ingreso entre $0 y $50.000. Sin embargo, algunas pocas personas tienen un nivel de ingresos de hasta $500.000.</li>
+<li>La media para el nivel de ingresos es: $9557.11. Y la mediana es: $7000.</li>
+<li>Podemos observar que la media es mayor que la mediana.</li>
+</ul></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gráficos de resumen</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Gráficos de resumen',
+                        subtitle: 'Universidad Católica de Córdoba',
+                useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                        favIcon: '03_Graficos_de_Resumen_files/logo.png',
+              },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Matías A. Alfonso' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <link href="03_Graficos_de_Resumen_files/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="03_Graficos_de_Resumen_files/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="03_Graficos_de_Resumen_files/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="03_Graficos_de_Resumen_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="03_Graficos_de_Resumen_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="03_Graficos_de_Resumen_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="03_Graficos_de_Resumen_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="03_Graficos_de_Resumen_files/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="03_Graficos_de_Resumen_files/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="03_Graficos_de_Resumen_files/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+    slides > slide:not(.nobackground):before {
+      font-size: 12pt;
+      content: "";
+      position: absolute;
+      bottom: 20px;
+      left: 60px;
+      background: url(03_Graficos_de_Resumen_files/logo.png) no-repeat 0 50%;
+      -webkit-background-size: 30px 30px;
+      -moz-background-size: 30px 30px;
+      -o-background-size: 30px 30px;
+      background-size: 30px 30px;
+      padding-left: 40px;
+      height: 30px;
+      line-height: 1.9;
+    }
+  </style>
+
+  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <aside class="gdbar"><img src="03_Graficos_de_Resumen_files/logo.png"></aside>
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">04 octubre, 2018</p>
+          </hgroup>
+  </slide>
+
+<slide class=""><hgroup><h2>Gráficos de barras</h2></hgroup><article  id="graficos-de-barras">
+
+<ul class = 'build'>
+<li>Los gráficos de barras que vimos anteriormente también se pueden utilizar para representar la media o la mediana.</li>
+<li>Adicionalmente, a los gráficos de barra, se les suele añadir un bigote, que representa alguna medida de dispersión de los datos.</li>
+<li>Veamos un ejemplo. Realicemos un gráfico para la media de horas trabajadas en la última semana(PP3E_TOT) en la EPH del 2do trimestre de 2017. Adicionalmente, agregaremos una barra con un desvío estandar por arriba y por debajo de la media.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="03_Graficos_de_Resumen_files/figure-html/ejemplo_eph-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+</article></slide><slide class=""><hgroup><h2>Gráficos de cajas (boxplots)</h2></hgroup><article  id="graficos-de-cajas-boxplots">
+
+<ul class = 'build'>
+<li>Los gráficos de cajas representan los <strong>cuartiles</strong> (con la <strong>mediana</strong>), los valores <strong>mínimo</strong> y <strong>máximo</strong> y los <strong>valores extremos</strong>.</li>
+<li>Llamaremos valores extremos a aquellos valores que se alejen más de 1.5 veces el rango intercuartílico de por debajo del cuartil 1 y por encima del cuartil 3.</li>
+<li>El mínimo y el máximo que se expresan en los bigotes se consideran excluyendo del conjunto de datos los valores extremos.</li>
+<li>Algunas veces también se representa la media en el mismo gráfico.</li>
+<li><a href='https://es.wikipedia.org/wiki/Diagrama_de_caja' title=''>https://es.wikipedia.org/wiki/Diagrama_de_caja</a></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<div class="figure" style="text-align: center">
+<img src="img/Boxplot.svg" alt="Gráfico de cajas" width="75%" />
+
+<p class="caption">
+
+Gráfico de cajas
+
+</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Ejemplo</h2></hgroup><article  id="ejemplo">
+
+<ul class = 'build'>
+<li>Veamos un ejemplo. Realicemos un <strong>gráfico de cajas</strong> para las horas trabajadas en la última semana(PP3E_TOT) en la EPH del 2do trimestre de 2017.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="03_Graficos_de_Resumen_files/figure-html/boxplot-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<ul class = 'build'>
+<li>Como la base que estamos observando es muy grande, podemos observar muchos valores extremos. Sin embargo, los valores extremos no logran arrastrar a la media, pues la media y la mediana son casi iguales.</li>
+<li>Veamos que pasa con el total de ingresos para los mayores de 18 años, particionado por sexo.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<pre >## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which
+## will replace the existing scale.</pre>
+
+<p><img src="03_Graficos_de_Resumen_files/figure-html/boxplot2-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<ul class = 'build'>
+<li>En este caso, podemos observar que la cantidad de valores extremos es superior que en el caso anterior.</li>
+<li>Además, la media se ve arrastrada por estos valores.</li>
+<li>Vimos anteriormente que la distribución del total de ingresos es una variable asimétrica a la derecha. Podemos observar esto en el gráfico, pues la media es superior a la mediana.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Ojiva de Galton</h2></hgroup><article  id="ojiva-de-galton">
+
+<ul class = 'build'>
+<li>La ojiva de Galton nos muestra de manera muy rápida los percentiles de la variables.</li>
+<li>Tiene una forma aproximada a una S.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="03_Graficos_de_Resumen_files/figure-html/galton-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<ul class = 'build'>
+<li>Realicemos una ojiva de Galton para el total de horas trabajadas la última semana para los mayores de 18 años en la EPH del 2do trimestre de 2017.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><img src="03_Graficos_de_Resumen_files/figure-html/galton2-1.png" width="720" /></p></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

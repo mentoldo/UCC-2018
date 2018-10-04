@@ -1,0 +1,170 @@
+---
+title: "Gráficos de resumen"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: true
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+## Para poder imprimir las tablas con kable_styling
+options("kableExtra.html.bsTable" = T)
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+## Gráficos de barras
+
+* Los gráficos de barras que vimos anteriormente también se pueden utilizar para representar la media o la mediana.
+* Adicionalmente, a los gráficos de barra, se les suele añadir un bigote, que representa alguna medida de dispersión de los datos.
+* Veamos un ejemplo. Realicemos un gráfico para la media de horas trabajadas en la última semana(PP3E_TOT) en la EPH del 2do trimestre de 2017. Adicionalmente, agregaremos una barra con un desvío estandar por arriba y por debajo de la media.
+
+---
+
+```{r ejemplo_eph}
+eph <- read.csv2("../data/usu_individual_t117.txt")
+
+eph %>% 
+    filter(PP3E_TOT >= 0 & PP3E_TOT < 168) %>% 
+    select(total_horas = PP3E_TOT, Sexo = CH04) %>%
+    mutate(Sexo = factor(Sexo, levels = 1:2, labels = c("Varon", "Mujer"))) %>% 
+    group_by(Sexo) %>% 
+    summarise(Media = mean(total_horas), Sd = sd(total_horas)) %>% 
+    ggplot(aes(x = Sexo, y = Media)) +
+    geom_col(fill = "tan2", width = .3) +
+    geom_errorbar(aes(ymin = Media - Sd, ymax = Media + Sd), width = .05) +
+    labs(y = "Media en horas", x = "Sexo") +
+    theme_bw()
+```
+
+---
+
+## Gráficos de cajas (boxplots)
+
+* Los gráficos de cajas representan los **cuartiles** (con la **mediana**), los valores **mínimo** y **máximo** y los **valores extremos**.
+* Llamaremos valores extremos a aquellos valores que se alejen más de 1.5 veces el rango intercuartílico de por debajo del cuartil 1 y por encima del cuartil 3.
+* El mínimo y el máximo que se expresan en los bigotes se consideran excluyendo del conjunto de datos los valores extremos.
+* Algunas veces también se representa la media en el mismo gráfico.
+* <https://es.wikipedia.org/wiki/Diagrama_de_caja>
+
+---
+
+```{r, out.width='75%', fig.align='center', fig.cap='Gráfico de cajas'}
+knitr::include_graphics('./img/Boxplot.svg')
+```
+
+## Ejemplo
+
+* Veamos un ejemplo. Realicemos un **gráfico de cajas** para las horas trabajadas en la última semana(PP3E_TOT) en la EPH del 2do trimestre de 2017.
+
+---
+
+```{r boxplot}
+eph %>% 
+    filter(PP3E_TOT >= 0 & PP3E_TOT < 168) %>% 
+    select(total_horas = PP3E_TOT, Sexo = CH04) %>%
+    mutate(Sexo = factor(Sexo, levels = 1:2, labels = c("Varon", "Mujer"))) %>% 
+    ggplot(aes(x = Sexo, y = total_horas)) +
+    geom_boxplot(fill = "powderblue", width = .3) + 
+    stat_summary(fun.y = mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) +
+    labs(y = "Total de horas trabajadas", x = "Sexo") +
+    theme_bw()
+    
+#     
+# eph %>% 
+#     filter(PP3E_TOT >= 0 & PP3E_TOT < 168) %>% 
+#     select(total_horas = PP3E_TOT, Sexo = CH04) %>%
+#     mutate(Sexo = factor(Sexo, levels = 1:2, labels = c("Varon", "Mujer"))) %>% 
+#     group_by(Sexo) %>% 
+#     summarise(Media = mean(total_horas), Mediana = median(total_horas))
+```
+
+---
+
+* Como la base que estamos observando es muy grande, podemos observar muchos valores extremos. Sin embargo, los valores extremos no logran arrastrar a la media, pues la media y la mediana son casi iguales.
+* Veamos que pasa con el total de ingresos para los mayores de 18 años, particionado por sexo.
+
+---
+
+```{r boxplot2, warning = FALSE}
+eph %>% 
+    filter(P47T > 18, P47T != -9) %>%
+    select(total_ingresos = P47T, Sexo = CH04) %>%
+    mutate(Sexo = factor(Sexo, levels = 1:2, labels = c("Varon", "Mujer"))) %>% 
+    ggplot(aes(x = Sexo, y = total_ingresos)) +
+    geom_boxplot(fill = "powderblue", width = .3) + 
+
+    stat_summary(fun.y = mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) +
+    labs(y = "Total de ingresos", x = "Sexo") +
+    ylim(c(0, 60000)) +
+    theme_bw() +
+    scale_y_continuous(labels = scales::dollar, limits = c(0, 60000))
+
+```
+
+---
+
+* En este caso, podemos observar que la cantidad de valores extremos es superior que en el caso anterior.
+* Además, la media se ve arrastrada por estos valores.
+* Vimos anteriormente que la distribución del total de ingresos es una variable asimétrica a la derecha. Podemos observar esto en el gráfico, pues la media es superior a la mediana.
+
+## Ojiva de Galton
+
+* La ojiva de Galton nos muestra de manera muy rápida los percentiles de la variables.
+* Tiene una forma aproximada a una S.
+
+---
+
+```{r galton, warning = FALSE}
+## Generamos datos aleatorios
+x <- rnorm(100000)
+Fn <- ecdf(x) ## Devuelve una función que toma un valor y devuelve la densidad empírica acumulada
+
+df <- data.frame(values = x, density = Fn(x))
+
+## Gráfico
+ggplot(df, aes(values, density)) +
+    geom_line() +
+    labs(x = "", y = "Frecuencia relativa acumulada") +
+    theme_minimal() +
+    theme(
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) +
+    labs(x = NULL, y = NULL)
+```
+
+---
+
+* Realicemos una ojiva de Galton para el total de horas trabajadas la última semana para los mayores de 18 años en la EPH del 2do trimestre de 2017.
+
+---
+
+```{r galton2, warning = FALSE}
+x <- eph %>% 
+    filter(PP3E_TOT >= 0 & PP3E_TOT < 168) %>% 
+    select(total_horas = PP3E_TOT)
+
+x <- x$total_horas
+Fn <- ecdf(x) ## Devuelve una función que toma un valor y devuelve la densidad empírica acumulada
+
+df <- data.frame(values = x, density = Fn(x))
+
+ggplot(df, aes(values, density)) +
+    geom_line() +
+    labs(x = "Horas de trabajo en la última semana", y = "Frecuencia relativa acumulada") + 
+    theme_bw()
+
+```
