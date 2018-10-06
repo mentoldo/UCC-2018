@@ -15,6 +15,17 @@ output:
     3. [Niveles de Medición](./01_NivelesMedicion/nivelesMedicion.html)
     4. [Tablas de distribución de frecuencias](./02_tablasFrecuencia/02_tablasFrecuencia.html)
     5. [Gráficos frecuencias](./02_graficoFrecuencias/02_graficoFrecuencias.html)
+    
+* Semana 2
+    1. [Medidas de Resumen](./03_Medidas_de_Resumen/03_Medidas_de_Resumen.html)
+    2. [Proporción](./03_Proporcion/03_Proporcion.html)
+    3. [Moda](./03_Moda/03_Moda.html)
+    4. [Mediana](./03_Mediana/03_Mediana.html)
+    5. [Media](./03_Media/03_Media.html)
+    6. [Medidas de dispersión](./03_Medidas_de_dispersion/03_Medidas_de_dispersion.html)
+    7. [Medidas de forma](./03_Medidas_de_forma/03_Medidas_de_forma.html)
+    8. [Gráficos de resumen](./03_Graficos_de_resumen/03_Graficos_de_Resumen.html)
+    
 
 ## Videos
 
