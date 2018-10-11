@@ -62,6 +62,7 @@ kable(edad, digits = 2) %>%
 
 * Nivel **intervalar o superior**
 * Es la diferencia entre el 3er y el 1er cuartil
+* El **semi recorrido intercuartilar** es la mitad de la amplitud intercuartilar.
 
 ## Ejemplo
 

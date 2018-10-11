@@ -1,0 +1,78 @@
+---
+title: "Relaciones entre variables"
+subtitle: "Universidad Católica de Córdoba"
+author: Matías A. Alfonso
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+      css: "../css/styles.css"
+      self_contained: false
+      logo: "../img/logo_UCC.png"
+      incremental: false
+      df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+## Para poder imprimir las tablas con kable_styling
+options("kableExtra.html.bsTable" = T, knitr.kable.NA = '')
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+```
+
+## Relaciones entre variables
+* Hasta ahora, nos hemos centrado en la descripción de variables individuales.
+* Comenzaremos a hablar de **relaciones** entre variables.
+* Hablaremos de **asociación** entre variables.
+* **Asociación** no implica **causalidad**
+* Utilizaremos medidas, tablas y gráficos para evaluar la intensidad de esa asociación.
+
+## Tablas de contingencia
+
+* También llamada **tabla bivariada**, **tabla de contingencia** o **tabla de distribución conjunta**.
+* Es una **tabla** donde las filas son las categorías de una variable y las **columnas** son las categorías de otra.
+* Las **frecuencias conjuntas** indican la cantidad de casos que corresponden a las categorías de ambas variables.
+* Las **frecuencias marginales** son los totales por fila y por columna
+
+## Ejemplo
+
+* Supongamos que queremos saber si el autoritarismo del docente está relacionado al rendimiento de los alumnos
+* Tenemos entonces las siguientes variables:
+
+* Tipo de docente:
+    1. Autoritario
+    2. Democrático
+    
+* Rendimiento:
+    1. Bajo
+    2. Medio
+    3. Alto
+    
+      
+---
+tabla
+  
+```{r, echo = FALSE}
+mat <- matrix(rep(NA, 6), 2, byrow = TRUE)
+# mat <- prop.table(mat)
+mat <- addmargins(mat)
+# mat <- NA
+
+## Agregamos los nombres de variables y dimensiones
+dimnames(mat) <- list("Tipo de docente"  =  c("Autoritario", "Democrático", "Total"),
+                      "Rendimiento" = c("Bajo", "Medio", "Alto", "Total"))
+
+as.data.frame(mat) %>% 
+    mutate(tipo = row.names(mat)) %>% 
+    select(tipo, Bajo, Medio, Alto, Total) %>% 
+
+kable(digits = 2, col.names = c("Tipo de \ndocente", "Bajo", "Medio", "Alto", "Total")) %>%
+    kable_styling() %>%
+    add_header_above(c(" " = 1, "Rendimiento" = 3, " " = 1))
+    # group_rows("Tipo de Docente", 1, 2, label_row_css = NULL)
+
+```

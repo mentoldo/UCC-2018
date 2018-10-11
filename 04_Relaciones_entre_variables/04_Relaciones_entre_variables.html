@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Relaciones entre variables</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Relaciones entre variables',
+                        subtitle: 'Universidad Católica de Córdoba',
+                useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                        favIcon: '04_Relaciones_entre_variables_files/logo.png',
+              },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Matías A. Alfonso' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <link href="04_Relaciones_entre_variables_files/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="04_Relaciones_entre_variables_files/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="04_Relaciones_entre_variables_files/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="04_Relaciones_entre_variables_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="04_Relaciones_entre_variables_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="04_Relaciones_entre_variables_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="04_Relaciones_entre_variables_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="04_Relaciones_entre_variables_files/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="04_Relaciones_entre_variables_files/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="04_Relaciones_entre_variables_files/ioslides-13.5.1/js/slide-deck.js"></script>
+  <script src="04_Relaciones_entre_variables_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="04_Relaciones_entre_variables_files/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+    slides > slide:not(.nobackground):before {
+      font-size: 12pt;
+      content: "";
+      position: absolute;
+      bottom: 20px;
+      left: 60px;
+      background: url(04_Relaciones_entre_variables_files/logo.png) no-repeat 0 50%;
+      -webkit-background-size: 30px 30px;
+      -moz-background-size: 30px 30px;
+      -o-background-size: 30px 30px;
+      background-size: 30px 30px;
+      padding-left: 40px;
+      height: 30px;
+      line-height: 1.9;
+    }
+  </style>
+
+  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <aside class="gdbar"><img src="04_Relaciones_entre_variables_files/logo.png"></aside>
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">11 octubre, 2018</p>
+          </hgroup>
+  </slide>
+
+<slide class=""><hgroup><h2>Relaciones entre variables</h2></hgroup><article  id="relaciones-entre-variables">
+
+<ul>
+<li>Hasta ahora, nos hemos centrado en la descripción de variables individuales.</li>
+<li>Comenzaremos a hablar de <strong>relaciones</strong> entre variables.</li>
+<li>Hablaremos de <strong>asociación</strong> entre variables.</li>
+<li><strong>Asociación</strong> no implica <strong>causalidad</strong></li>
+<li>Utilizaremos medidas, tablas y gráficos para evaluar la intensidad de esa asociación.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Tablas de contingencia</h2></hgroup><article  id="tablas-de-contingencia">
+
+<ul>
+<li>También llamada <strong>tabla bivariada</strong>, <strong>tabla de contingencia</strong> o <strong>tabla de distribución conjunta</strong>.</li>
+<li>Es una <strong>tabla</strong> donde las filas son las categorías de una variable y las <strong>columnas</strong> son las categorías de otra.</li>
+<li>Las <strong>frecuencias conjuntas</strong> indican la cantidad de casos que corresponden a las categorías de ambas variables.</li>
+<li>Las <strong>frecuencias marginales</strong> son los totales por fila y por columna</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Ejemplo</h2></hgroup><article  id="ejemplo">
+
+<ul>
+<li>Supongamos que queremos saber si el autoritarismo del docente está relacionado al rendimiento de los alumnos</li>
+<li><p>Tenemos entonces las siguientes variables:</p></li>
+<li>Tipo de docente:
+
+<ol>
+<li>Autoritario</li>
+<li>Democrático</li>
+</ol></li>
+<li>Rendimiento:
+
+<ol>
+<li>Bajo</li>
+<li>Medio</li>
+<li>Alto</li>
+</ol></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>tabla</p>
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="border-bottom:hidden" colspan="1">
+
+</th>
+
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Rendimiento</div>
+
+</th>
+
+<th style="border-bottom:hidden" colspan="1">
+
+</th>
+
+</tr>
+
+<tr>
+
+<th style="text-align:left;">
+
+Tipo de docente
+
+</th>
+
+<th style="text-align:right;">
+
+Bajo
+
+</th>
+
+<th style="text-align:right;">
+
+Medio
+
+</th>
+
+<th style="text-align:right;">
+
+Alto
+
+</th>
+
+<th style="text-align:right;">
+
+Total
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+Autoritario
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Democrático
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Total
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+<td style="text-align:right;">
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
