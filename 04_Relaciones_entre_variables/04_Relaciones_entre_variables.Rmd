@@ -8,7 +8,7 @@ output:
       css: "../css/styles.css"
       self_contained: false
       logo: "../img/logo_UCC.png"
-      incremental: false
+      incremental: true
       df_print: kable
 ---
 
