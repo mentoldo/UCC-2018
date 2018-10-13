@@ -1,0 +1,48 @@
+---
+title: "Prueba"
+author: "Matías A. Alfonso"
+date: "11 de octubre de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tables)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+
+```
+
+
+## R Markdown
+
+
+```{r, echo = FALSE}
+mat <- matrix(rep(NA, 6), 2, byrow = TRUE)
+mat <- addmargins(mat)
+
+## Agregamos los nombres de variables y dimensiones
+dimnames(mat) <- list("Tipo de docente"  =  c("Autoritario", "Democrático", "Total"),
+"Rendimiento" = c("Bajo", "Medio", "Alto", "Total"))
+
+mat <- as.data.frame(mat) %>%
+        mutate(Tipo = cell_spec(row.names(mat), bold = T)) %>%
+        select(Tipo, Bajo, Medio, Alto, Total)
+
+
+
+# tabular(as.table(mat))
+
+# toKable(as.tabular(mat))
+
+mat %>%  
+    kable(digits = 2, col.names = c("<span style=\"border-bottom: 5px solid red;\"> Tipo de docente </span>", "Bajo", "Medio", "Alto", "Total"), escape = F) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "bordered"), full_width = F) %>% 
+    add_header_above(c(" " = 1, "Rendimiento" = 3, " " = 1)) %>% 
+    column_spec(1, color = "rgb(60, 60, 60)")
+    # group_rows("Tipo de Docente", 1, 2, label_row_css = NULL)
+
+```
+
