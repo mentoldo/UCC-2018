@@ -215,4 +215,4 @@ x <- rnorm(100, 20, 4)
 y <- rnorm(100, 20, 4)
 
 df <- data.frame(x = x, y = y)
-write.csv2(df, "./data/rifuerte.csv", row.names = FALSE)
+write.csv2(df, "./data/rnula.csv", row.names = FALSE)
