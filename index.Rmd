@@ -26,6 +26,8 @@ output:
     7. [Medidas de forma](./03_Medidas_de_forma/03_Medidas_de_forma.html)
     8. [Gráficos de resumen](./03_Graficos_de_resumen/03_Graficos_de_Resumen.html)
     
+* Semana 3
+    1. [Relaciones entre variables](./04_Relaciones_entre_variables/04_Relaciones_entre_variables.html)
 
 ## Videos
 
