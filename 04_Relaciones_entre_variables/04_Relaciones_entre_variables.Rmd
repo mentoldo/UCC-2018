@@ -211,7 +211,7 @@ format(mat, digits = 2, nsmall = 2) %>%
 
 ```
 
-## Frecuencias relativas por columna
+## Frecuencias relativas al total
 
 * El 10% de los alumnos tuvieron un docente autoritario y un rendimiento bajo
 * El 19% de los alumnos tuvieron un docente democrático y un rendimiento alto 
